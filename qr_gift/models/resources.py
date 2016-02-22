@@ -13,9 +13,9 @@ from django.db import models
 class CommonResourceModel(models.Model):
     class Meta:
         app_label = 'qr_gift'
-    id=models.IntegerField(primary_key=True,editable=False)
+    id=models.AutoField(primary_key=True,editable=False)
     origin_url=models.URLField()
-    cdn_url=models.URLField()
+    cdn_url=models.URLField(null=True)
     uploaded_at=models.DateTimeField(auto_now_add=True)
 
 class AvatarImageModel(CommonResourceModel):

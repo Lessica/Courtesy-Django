@@ -19,8 +19,12 @@ class QRStyleModel(models.Model):
     id=models.IntegerField(primary_key=True,editable=False)
     created_at=models.DateTimeField(auto_now_add=True)
     name=models.CharField(max_length=256)
-    style_binary=models.ForeignKey(CommonResourceModel,related_name='style_binary_id_res')
-    preview=models.ForeignKey(CommonResourceModel,related_name='preview_res')
+    style_border_binary=models.OneToOneField(CommonResourceModel,related_name='style_border_res',null=True)
+    style_center_binary=models.OneToOneField(CommonResourceModel,related_name='style_center_res',null=True)
+    style_script=models.OneToOneField(CommonResourceModel,related_name='style_script_res',null=True)
+    preview=models.OneToOneField(CommonResourceModel,related_name='preview_res',null=True)
+    def __unicode__(self):
+        return self.name
 
 class QRCodeModel(models.Model):
     class Meta:
