@@ -24,7 +24,8 @@ from qr_gift import views as qr_gift_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^account/register$', qr_gift_views.register),
-    url(r'^account/login$',qr_gift_views.login),
-    url(r'^account/test$',qr_gift_views.test),
+    url(r'^accounts/register$', qr_gift_views.register),
+    url(r'^accounts/login$',qr_gift_views.login),
+    url(r'^accounts/logout/$',qr_gift_views.logout),
+    #  url(r'^accounts/test$',qr_gift_views.test),
 ]

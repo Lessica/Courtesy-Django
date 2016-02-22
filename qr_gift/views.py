@@ -24,7 +24,7 @@ def register(request):
         except IntegrityError as e:
             res['error']=1
 
-    return HttpResponse(json.dumps(res))
+    return HttpResponse(json.dumps(res), content_type="application/json")
 
 def login(request):
     res={'error':-1}
@@ -41,7 +41,22 @@ def login(request):
             auth.login(request, user)
         else:
             res['error']=1
-    return HttpResponse(json.dumps(res))
 
+    return HttpResponse(user.username, content_type="application/json")
 
+def logout(request):
+    res={'error':0}
+    auth.logout(request)
+    return HttpResponse(json.dumps(res), content_type="application/json")
+
+def password_change():
+    res={'error':-1}
+    if (request.method=='POST'):
+        res['error']=0
+        if not request.user.is_authenticated():
+            res['error']=0
+        else:
+            request.user.set_password("hello123")
+
+    return HttpResponse(json.dumps(res), content_type="application/json")
 

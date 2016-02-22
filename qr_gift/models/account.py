@@ -15,6 +15,7 @@ from django.contrib.auth.models import User, UserManager
 from django.db.models.signals import post_save
 from signals import *
 import django.utils.timezone as timezone
+import json
 
 class UserModel(User):
     class Meta:
@@ -33,4 +34,5 @@ class UserModel(User):
     objects = UserManager()
     def __unicode__(self):
         return self.username
-
+    def toJSON(self):
+        return json.dumps(dict([(attr, getattr(self, attr)) for attr in [f.name for f in self._meta.fields]]))

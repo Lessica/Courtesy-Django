@@ -33,4 +33,4 @@ class QRCodeModel(models.Model):
     is_recorded=models.BooleanField()
     recorded_at=models.DateTimeField()
     scan_count=models.IntegerField()
-    card_token=models.ForeignKey(CardModel)
+    card_token=models.OneToOneField(CardModel)
