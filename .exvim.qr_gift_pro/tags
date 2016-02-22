@@ -1,0 +1,33 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+ALLOWED_HOSTS	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^ALLOWED_HOSTS = []$/;"	v
+AUTH_PASSWORD_VALIDATORS	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	v
+BASE_DIR	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))$/;"	v
+DATABASES	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^DATABASES = {$/;"	v
+DEBUG	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^DEBUG = True$/;"	v
+INSTALLED_APPS	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^INSTALLED_APPS = [$/;"	v
+LANGUAGE_CODE	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^LANGUAGE_CODE = 'en-us'$/;"	v
+MIDDLEWARE_CLASSES	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^MIDDLEWARE_CLASSES = [$/;"	v
+ROOT_URLCONF	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^ROOT_URLCONF = 'qr_gift_pro.urls'$/;"	v
+SECRET_KEY	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^SECRET_KEY = 'w6f)yd9@_hj$x*23f-%h9dt4a2odwu8alk$qso@nox*$bzn79-'$/;"	v
+STATIC_URL	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^STATIC_URL = '\/static\/'$/;"	v
+TEMPLATES	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^TEMPLATES = [$/;"	v
+TIME_ZONE	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^TIME_ZONE = 'UTC'$/;"	v
+USE_I18N	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^USE_I18N = True$/;"	v
+USE_L10N	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^USE_L10N = True$/;"	v
+USE_TZ	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^USE_TZ = True$/;"	v
+WSGI_APPLICATION	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^WSGI_APPLICATION = 'qr_gift_pro.wsgi.application'$/;"	v
+admin	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\urls.py	/^from django.contrib import admin$/;"	i
+application	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\wsgi.py	/^application = get_wsgi_application()$/;"	v
+execute_from_command_line	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\manage.py	/^    from django.core.management import execute_from_command_line$/;"	i
+get_wsgi_application	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\wsgi.py	/^from django.core.wsgi import get_wsgi_application$/;"	i
+os	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\manage.py	/^import os$/;"	i
+os	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^import os$/;"	i
+os	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\wsgi.py	/^import os$/;"	i
+sys	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\manage.py	/^import sys$/;"	i
+url	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\urls.py	/^from django.conf.urls import url$/;"	i
+urlpatterns	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\urls.py	/^urlpatterns = [$/;"	v

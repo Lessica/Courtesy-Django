@@ -1,0 +1,35 @@
+" Press <F1> for help
+
+-[F]qr_gift_pro {
+ |-[F]qr_gift {
+ | |-[F]migrations {
+ | | |-0001_initial.py
+ | | |-0002_auto_20160221_2322.py
+ | | |-0003_usermodel_nick.py
+ | | |-0004_auto_20160222_1007.py
+ | | |-__init__.py }
+ | |
+ | |-[F]models {
+ | | |-__init__.py
+ | | |-account.py
+ | | |-card.py
+ | | |-config.py
+ | | |-qr.py
+ | | |-resources.py
+ | | |-signals.py }
+ | |
+ | |-__init__.py
+ | |-admin.py
+ | |-apps.py
+ | |-tests.py
+ | |-views.py }
+ |
+ |-[F]qr_gift_pro {
+ | |-__init__.py
+ | |-settings.py
+ | |-urls.py
+ | |-wsgi.py }
+ |
+ |-manage.py }
+
+
