@@ -15,12 +15,16 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+admin.autodiscover()
 
 from django.views.generic.base import RedirectView
 from qr_gift import views as qr_gift_views
+
 #  import qr_gift
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^account/register$', qr_gift_views.register)
+    url(r'^account/register$', qr_gift_views.register),
+    url(r'^account/login$',qr_gift_views.login),
+    url(r'^account/test$',qr_gift_views.test),
 ]
