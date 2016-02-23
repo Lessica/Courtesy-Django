@@ -12,7 +12,7 @@ import Image
 
 reload(sys)
 sys.setdefaultencoding("utf-8")
-def script(image_name,border_name):
+def script(image_name,border_name,name):
     im=Image.open(image_name)
     im_size=im.size
     border=Image.open(border_name)
@@ -21,7 +21,7 @@ def script(image_name,border_name):
     x=y=0
     image.paste(im,(x,y))
     image.paste(border,(x,y+im_size[1]))
-    image.save("fin.png")
+    image.save(name)
 
 if __name__ == '__main__':
-    script(sys.argv[1],sys.argv[2])
+    script(sys.argv[1],sys.argv[2],sys.argv[3])
