@@ -17,51 +17,53 @@ import time
 
 SITE_ADDR="http://10.1.0.2222:8000/"
 
+def login(request,post_data,ret):
+    #TODO:is logined
+    #  if request.user.is_authenticated():
+        #  ret['error']=408
+        #  return ret
+    try:
+        req = post_data["account"]
 
-def register(request):
-    res={'error':-1}
-    if (request.method=='POST'):
-        req = json.loads(request.body)
-        res={"error":0}
-        try:
-            user = UserModel.objects.create_user(
-                                             username=req['email'],
-                                             email=req['email'],
-                                             )
-            user.set_password(req['password'])
-            user.nick=req['nick']
-            user.save()
-        except IntegrityError as e:
-            res['error']=1
-
-    return HttpResponse(json.dumps(res), content_type="application/json")
-
-def login(request):
-    res={'error':-1}
-    if (request.method=='POST'):
-        res['error']=0
-        if request.user.is_authenticated():
-            res['error']=1
-
-        req = json.loads(request.body)
-
-        user = auth.authenticate(username=req['email'], password=req['password'])
+        user = auth.authenticate(username=req['email'], password=req['pwd'])
 
         if user is None:
-            res['error']=2
-        if not user.is_active:
-            res['error']=3
+            ret['error']=406
+        if ret['error']==0 and not user.is_active:
+            ret['error']=407
         else:
             auth.login(request, user)
-            res['user_model']=UserModel.objects.get(user_ptr_id=user.id).toDict()
+    except KeyError as e:
+        ret['error']=401
+        ret["field"]=str(e)[1:-1]
+    except AttributeError as e:
+        ret['error']=500
+        ret["field"]=str(e)[1:-1]
+        #  ret['user_model']=UserModel.objects.get(user_ptr_id=user.id).toDict()
+    #  return ret
+    return ret
 
-    return HttpResponse(json.dumps(res), content_type="application/json")
+def register(request,post_data,ret):
+    req=post_data["account"]
+    try:
+        user = UserModel.objects.create_user(
+                                         username=req['email'],
+                                         email=req['email'],
+                                         )
+        user.set_password(req['pwd'])
+    except IntegrityError as e:
+        ret['error']=405
+        ret['field']=str(e).replace("username","email").split(" ")[1]
 
-def logout(request):
-    res={'error':0}
+    #  user = auth.authenticate(username=req['email'], password=req['password'])
+    #  auth.login(request, user)
+
+    return ret
+
+
+def logout(post_data,ret,request):
     auth.logout(request)
-    return HttpResponse(json.dumps(res), content_type="application/json")
-
+    return ret
 def password_change():
     res={'error':-1}
     if (request.method=='POST'):
@@ -224,3 +226,24 @@ def qr_arrise(request):
     else:
         uf = QR_Form()
     return render_to_response('qr_arrise.html',{'uf':uf})
+
+
+def api(request):
+    ret={"error":0}
+
+    if request.method!='POST':
+        ret["error"]=400
+    post_data=json.loads(request.body)
+    if ret["error"]==0 and not "action" in post_data:
+        ret["error"]=402
+        ret["field"]="action"
+    request_action=post_data["action"]
+    request_action_func_list={"user_register":register,"user_login":login}
+    if ret["error"]==0 and not request_action in request_action_func_list.keys():
+        ret["error"]=404
+
+    if ret["error"]==0:
+        ret=request_action_func_list[request_action](request,post_data,ret)
+
+    ret["time"]=int(round(time.time() * 1000))
+    return HttpResponse(json.dumps(ret), content_type="application/json")
