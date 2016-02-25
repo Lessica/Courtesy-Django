@@ -17,6 +17,12 @@ class CommonResourceModel(models.Model):
     origin_url=models.URLField()
     cdn_url=models.URLField(null=True)
     uploaded_at=models.DateTimeField(auto_now_add=True)
+    def toDict(self):
+        ret={
+            "id":self.id,
+            "origin_url":self.origin_url,
+        }
+        return ret
 
 class AvatarImageModel(CommonResourceModel):
     class Meta:

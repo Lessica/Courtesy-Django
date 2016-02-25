@@ -17,15 +17,14 @@ from signals import *
 import django.utils.timezone as timezone
 
 import json
+import time
 from resources import *
 
 class UserModel(User):
     class Meta:
-        app_label = 'qr_gift'
+        app_label='qr_gift'
     level=models.ForeignKey(SiteLevelConfigModel,null=True)
     exp=models.IntegerField(default=0);
-    nick=models.CharField(max_length=256,default=u"路人甲")
-    logo=models.ForeignKey(CommonResourceModel,null=True)
     detailed_info=models.TextField(default="")
     registered_at=models.DateTimeField(auto_now_add=True)
     modified_at=models.DateTimeField(auto_now=True)
@@ -34,21 +33,36 @@ class UserModel(User):
     subscribe_count=models.IntegerField(default=0)
     be_subscribe_count=models.IntegerField(default=0)
 
+    nick=models.CharField(max_length=256,default=u"路人甲")
+    avatar=models.ForeignKey(CommonResourceModel,null=True)
+    mobile=models.CharField(max_length=16,default="")
+    birthday=models.CharField(max_length=16,default="")
+    gender=models.IntegerField(default=1)
+    province=models.CharField(max_length=32,default="")
+    city=models.CharField(max_length=32,default="")
+    constellation=models.CharField(max_length=32,default="")
+
     objects = UserManager()
     def __unicode__(self):
         return self.username
     def toDict(self):
         dic={
+            "user_id":self.user_ptr_id,
             "email":self.email,
-            "nick":self.nick,
-            "detailed_info":self.detailed_info,
-            "level":self.level,
-            "exp":self.exp,
-            "registered_at":self.registered_at.strftime('%Y-%m-%d %H:%M:%S'),
-            "modified_at":self.modified_at.strftime('%Y-%m-%d %H:%M:%S'),
-            "last_login_at":self.last_login_at.strftime('%Y-%m-%d %H:%M:%S'),
+            "registered_at":int(str(time.mktime(self.registered_at.timetuple()))[:-2]),
+            "last_login_at":int(str(time.mktime(self.last_login_at.timetuple()))[:-2]),
             "card_count":self.card_count,
-            "subscribe_count":self.subscribe_count,
-            "be_subscribe_count":self.be_subscribe_count,
+            "profile":{
+                "nick":self.nick,
+                "avatar":self.avatar,
+                "mobile":self.mobile,
+                "birthday":self.birthday,
+                "gender":self.gender,
+                "province":self.province,
+                "city":self.city,
+                "constellation":self.constellation,
+            }
         }
+        if self.avatar:
+            dict["avatar"]=self.avatar.id
         return dic

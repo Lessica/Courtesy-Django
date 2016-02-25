@@ -4,6 +4,7 @@ from django.db import IntegrityError
 from django.shortcuts import render_to_response
 from django.contrib import auth
 from django import forms
+import django.utils.timezone as timezone
 
 from .models import *
 import re
@@ -14,6 +15,7 @@ from os.path import join as jn
 import zipfile
 import StringIO
 import time
+import Image
 
 SITE_ADDR="http://10.1.0.2222:8000/"
 
@@ -26,19 +28,20 @@ def login(request,post_data,ret):
         req = post_data["account"]
 
         user = auth.authenticate(username=req['email'], password=req['pwd'])
-
         if user is None:
             ret['error']=406
         if ret['error']==0 and not user.is_active:
             ret['error']=407
         else:
             auth.login(request, user)
+        UserModel.objects.get(user_ptr_id=request.user.id).last_login_at=timezone.now
     except KeyError as e:
         ret['error']=401
         ret["field"]=str(e)[1:-1]
     except AttributeError as e:
-        ret['error']=500
-        ret["field"]=str(e)[1:-1]
+        if ret['error']!=406:
+            ret['error']=406
+            ret["field"]=str(e)[1:-1]
         #  ret['user_model']=UserModel.objects.get(user_ptr_id=user.id).toDict()
     #  return ret
     return ret
@@ -51,19 +54,142 @@ def register(request,post_data,ret):
                                          email=req['email'],
                                          )
         user.set_password(req['pwd'])
+        #  user.nick=req['nick']
+        user.save()
+
+        user = auth.authenticate(username=req['email'], password=req['pwd'])
+        auth.login(request, user)
     except IntegrityError as e:
         ret['error']=405
         ret['field']=str(e).replace("username","email").split(" ")[1]
+    #  except Exception:
+        #  ret['error']=404
 
-    #  user = auth.authenticate(username=req['email'], password=req['password'])
-    #  auth.login(request, user)
 
     return ret
 
+def logout(request,post_data,ret):
+    if not request.user.is_authenticated():
+        ret["error"]=403
+    else:
+        try:
+            auth.logout(request)
+        except Exception:
+            ret['error']=404
 
-def logout(post_data,ret,request):
-    auth.logout(request)
     return ret
+
+def user_info(request,post_data,ret):
+    if not request.user.is_authenticated():
+        ret["error"]=403
+    else:
+        ret["account_info"]=UserModel.objects.get(user_ptr_id=request.user.id).toDict()
+    return ret
+
+def user_edit_profile(request,post_data,ret):
+    try:
+        if not request.user.is_authenticated():
+            ret["error"]=403
+        else:
+            profile=post_data["profile"]
+            user_model=UserModel.objects.get(user_ptr_id=request.user.id)
+            user_model.nick=profile["nick"]
+            #TODO:
+            #  user_model.avatar=profile["avatar"]
+            user_model.mobile=profile["mobile"]
+            user_model.birthday=profile["birthday"]
+            user_model.gender=profile["gender"]
+            user_model.province=profile["province"]
+            user_model.city=profile["city"]
+            user_model.constellation=profile["constellation"]
+            user_model.save()
+
+    except KeyError as e:
+        ret['error']=401
+        ret["field"]=str(e)[1:-1]
+
+    return ret
+
+class UserAvatarUpload(object):
+    def __init__(self,request,ret):
+        self.request=request
+        self.ret=ret
+    class UploadForm(forms.Form):
+        avatar=forms.ImageField(required=True)
+
+    def upload(self):
+        server_path=handle_uploaded_file(self.request.FILES['avatar'],str(time.time()),"avatar")
+        url_path=server_path[7:]
+        img=Image.open(server_path)
+        if img.size[0]!=img.size[1]:
+            self.ret["error"]=422
+            os.remove(server_path)
+        else:
+            res=CommonResourceModel(origin_url=url_path)
+            res.save()
+            self.ret["origin"]={"url":url_path}
+            for size in [300,150,60]:
+                img.thumbnail((size,size),Image.ANTIALIAS)
+                save_to_path=server_path[:-4]+"_"+str(size)+".png"
+                res=CommonResourceModel(origin_url=save_to_path[7:])
+                res.save()
+                self.ret[str(size)+"px"]={"url":save_to_path[7:]}
+                img.save(save_to_path,"png")
+
+def handle_uploaded_file(file,md5_str,path):
+    m2=hashlib.md5(file.name.encode("utf-8")+md5_str)
+    file_type=file.name.split('.')[1]
+    des_path=jn("qr_gift","static",path,m2.hexdigest()+"."+file_type)
+    destination = open(des_path , 'wb+')
+    for chunk in file.chunks():
+        destination.write(chunk)
+    destination.close()
+    return des_path
+
+def common_upload(request,action):
+    if not request.user.is_authenticated():
+        ret={"error":403}
+        return HttpResponse(json.dumps(ret), content_type="application/json")
+
+    act2class={
+        "avatar":UserAvatarUpload,
+
+    }
+    ret={"error":0}
+    common_upload_class=act2class[action](request,ret)
+    common_upload_form=common_upload_class.UploadForm
+
+    if request.method == "POST":
+        uf = common_upload_form(request.POST,request.FILES)
+        if uf.is_valid():
+            common_upload_class.upload()
+            ret=common_upload_class.ret
+        else:
+            ret={"error":401}
+        return HttpResponse(json.dumps(ret), content_type="application/json")
+    else:
+        uf = common_upload_form()
+        return render_to_response('common_upload.html',{'uf':uf})
+
+def user_avatar_upload(request):
+    ret={"error":0}
+    if not request.user.is_authenticated():
+        ret={"error":403}
+    if request.method == "POST":
+        uf = UserUploadForm(request.POST,request.FILES)
+        if uf.is_valid():
+            file_path=handle_uploaded_file(request.FILES['avatar'],str(time.time()),"avatar")
+            file_path=file_path[7:]
+            res=CommonResourceModel(origin_url=file_path)
+            res.save()
+            ret["res"]=res.toDict()
+        else:
+            ret={"error":403}
+        return HttpResponse(json.dumps(ret), content_type="application/json")
+    else:
+        uf = UserUploadForm()
+        return render_to_response('common_upload.html',{'uf':uf})
+
 def password_change():
     res={'error':-1}
     if (request.method=='POST'):
@@ -82,16 +208,6 @@ class UserForm(forms.Form):
     style_center_binary=forms.FileField(required=False)
     style_script=forms.FileField(required=True)
 
-
-def handle_uploaded_file(file,name,path):
-    m2=hashlib.md5(name+file.name)
-    type=file.name.split('.')[1]
-    des_path=jn("qr_gift","static",path,m2.hexdigest()+"."+type)
-    destination = open(des_path , 'wb+')
-    for chunk in file.chunks():
-        destination.write(chunk)
-    destination.close()
-    return des_path
 def qr_style_upload(request):
     if not request.user.is_authenticated():
         return HttpResponse("need super user!")
@@ -229,6 +345,7 @@ def qr_arrise(request):
 
 
 def api(request):
+    time.sleep(3)
     ret={"error":0}
 
     if request.method!='POST':
@@ -238,12 +355,18 @@ def api(request):
         ret["error"]=402
         ret["field"]="action"
     request_action=post_data["action"]
-    request_action_func_list={"user_register":register,"user_login":login}
+    request_action_func_list={
+        "user_register":register,
+        "user_login":login,
+        "user_logout":logout,
+        "user_info":user_info,
+        "user_edit_profile":user_edit_profile
+    }
     if ret["error"]==0 and not request_action in request_action_func_list.keys():
         ret["error"]=404
 
     if ret["error"]==0:
         ret=request_action_func_list[request_action](request,post_data,ret)
 
-    ret["time"]=int(round(time.time() * 1000))
+    ret["time"]=int(round(time.time() * 1e3)/1e3)
     return HttpResponse(json.dumps(ret), content_type="application/json")
