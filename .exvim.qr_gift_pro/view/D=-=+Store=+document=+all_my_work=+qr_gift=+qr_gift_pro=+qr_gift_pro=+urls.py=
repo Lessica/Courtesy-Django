@@ -66,7 +66,7 @@ setlocal foldcolumn=0
 setlocal foldenable
 setlocal foldexpr=0
 setlocal foldignore=#
-setlocal foldlevel=1
+setlocal foldlevel=0
 setlocal foldmarker={,}
 setlocal foldmethod=indent
 setlocal foldminlines=1
@@ -131,22 +131,14 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-24
+26
 normal! zo
-49
-normal! zo
-50
-normal! zo
-56
-normal! zo
-68
-normal! zo
-let s:l = 40 - ((19 * winheight(0) + 24) / 49)
+let s:l = 27 - ((26 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-40
-normal! 041|
+27
+normal! 050|
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

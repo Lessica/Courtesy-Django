@@ -61,6 +61,7 @@ class UserModel(User):
                 "province":self.province,
                 "city":self.city,
                 "constellation":self.constellation,
+                "introduction":self.detailed_info,
             }
         }
         if self.avatar:

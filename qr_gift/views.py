@@ -54,7 +54,7 @@ def register(request,post_data,ret):
                                          email=req['email'],
                                          )
         user.set_password(req['pwd'])
-        #  user.nick=req['nick']
+        user.nick=req["email"].split("@")[0]
         user.save()
 
         user = auth.authenticate(username=req['email'], password=req['pwd'])
@@ -84,6 +84,7 @@ def user_info(request,post_data,ret):
         ret["error"]=403
     else:
         ret["account_info"]=UserModel.objects.get(user_ptr_id=request.user.id).toDict()
+        ret["account_info"]["has_profile"] = True;
     return ret
 
 def user_edit_profile(request,post_data,ret):
@@ -99,6 +100,7 @@ def user_edit_profile(request,post_data,ret):
             user_model.mobile=profile["mobile"]
             user_model.birthday=profile["birthday"]
             user_model.gender=profile["gender"]
+            user_model.detailed_info=profile["introduction"]
             user_model.province=profile["province"]
             user_model.city=profile["city"]
             user_model.constellation=profile["constellation"]
@@ -166,30 +168,14 @@ def common_upload(request,action):
             ret=common_upload_class.ret
         else:
             ret={"error":401}
+
+        ret["time"]=int(round(time.time() * 1e3)/1e3)
         return HttpResponse(json.dumps(ret), content_type="application/json")
     else:
         uf = common_upload_form()
         return render_to_response('common_upload.html',{'uf':uf})
 
-def user_avatar_upload(request):
-    ret={"error":0}
-    if not request.user.is_authenticated():
-        ret={"error":403}
-    if request.method == "POST":
-        uf = UserUploadForm(request.POST,request.FILES)
-        if uf.is_valid():
-            file_path=handle_uploaded_file(request.FILES['avatar'],str(time.time()),"avatar")
-            file_path=file_path[7:]
-            res=CommonResourceModel(origin_url=file_path)
-            res.save()
-            ret["res"]=res.toDict()
-        else:
-            ret={"error":403}
-        return HttpResponse(json.dumps(ret), content_type="application/json")
-    else:
-        uf = UserUploadForm()
-        return render_to_response('common_upload.html',{'uf':uf})
-
+# TODO:
 def password_change():
     res={'error':-1}
     if (request.method=='POST'):
@@ -345,7 +331,6 @@ def qr_arrise(request):
 
 
 def api(request):
-    time.sleep(3)
     ret={"error":0}
 
     if request.method!='POST':
@@ -355,6 +340,7 @@ def api(request):
         ret["error"]=402
         ret["field"]="action"
     request_action=post_data["action"]
+    print request_action
     request_action_func_list={
         "user_register":register,
         "user_login":login,
