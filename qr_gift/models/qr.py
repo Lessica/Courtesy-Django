@@ -37,7 +37,7 @@ class QRCodeModel(models.Model):
     id=models.AutoField(primary_key=True,editable=False)
     channel=models.IntegerField()
     style=models.ForeignKey(QRStyleModel)
-    unique_id=models.CharField(max_length=16,unique=True)
+    unique_id=models.CharField(max_length=32,unique=True)
     created_at=models.DateTimeField(auto_now_add=True)
     is_recorded=models.BooleanField(default=False)
     recorded_at=models.DateTimeField(null=True)
@@ -45,4 +45,20 @@ class QRCodeModel(models.Model):
     card_token=models.OneToOneField(CardModel,null=True)
     def __unicode__(self):
         return self.name
+    def toDict(self):
+        dic={
+            "channel":self.channel,
+            "unique_id":self.unique_id,
+            "created_at":int(str(time.mktime(self.created_at.timetuple()))[:-2]),
+            "is_recorded":self.is_recorded,
+            "scan_count":self.scan_count,
+            #  "card_token":self.card_token.token,
+        }
+        if self.recorded_at:
+            dic[ "recorded_at" ]=int(str(time.mktime(self.recorded_at.timetuple()))[:-2])
+        else:
+            dic[ "recorded_at" ]=self.recorded_at
+
+        return dic
+
 

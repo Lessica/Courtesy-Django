@@ -4,6 +4,7 @@ from django.db import IntegrityError
 from django.shortcuts import render_to_response
 from django.contrib import auth
 from django import forms
+from django.core.exceptions import *
 import django.utils.timezone as timezone
 
 from .models import *
@@ -16,8 +17,13 @@ import zipfile
 import StringIO
 import time
 import Image
+import datetime
 
 SITE_ADDR="http://10.1.0.2222:8000/"
+
+#######################################################
+################## USER PART #######################
+#######################################################
 
 def login(request,post_data,ret):
     #TODO:is logined
@@ -34,7 +40,10 @@ def login(request,post_data,ret):
             ret['error']=407
         else:
             auth.login(request, user)
-        UserModel.objects.get(user_ptr_id=request.user.id).last_login_at=timezone.now
+        #  um=UserModel.objects.get(user_ptr_id=request.user.id)
+        #  um.last_login=timezone.now
+        #  um.save()
+
     except KeyError as e:
         ret['error']=401
         ret["field"]=str(e)[1:-1]
@@ -113,6 +122,97 @@ def user_edit_profile(request,post_data,ret):
 
     return ret
 
+
+#######################################################
+################## QR_CODE PART #######################
+#######################################################
+def qr_query(request,post_data,ret):
+    qr_id=post_data["id"]
+    try:
+        qr_model=QRCodeModel.objects.get(unique_id=qr_id)
+    except ( ValueError,ObjectDoesNotExist ):
+        ret["error"]=423
+        return ret
+    ret["qr_info"]=qr_model.toDict()
+    qr_model.scan_count=qr_model.scan_count+1
+    if qr_model.is_recorded==True:
+        card=qr_model.card_token
+        ret["card_info"]=card.toDict()
+        if request.user.email!=card.author.email:
+            card.view_count=card.view_count+1
+
+    return ret
+
+def card_query(request,post_data,ret):
+    try:
+        card=CardModel.objects.get(token=post_data["token"])
+    except ( ValueError,ObjectDoesNotExist ):
+        ret["error"]=423
+        return ret
+    ##TODO
+    if card.banned:
+        ret["error"]=426
+        return ret
+    ret["card_info"]=card.toDict()
+    return ret
+def card_edit(request,post_data,ret):
+    if not request.user.is_authenticated():
+        ret["error"]=403
+        return ret
+    card_info=post_data["card_info"]
+    try:
+        card=CardModel.objects.get(token=post_data["token"])
+    except ( ValueError,ObjectDoesNotExist ):
+        ret["error"]=423
+        return ret
+    ##TODO
+    card.author=UserModel.objects.get(user_ptr_id=request.user.id)
+    if request.user.email!=card.author.email:
+        ret["error"]=425
+        return ret
+    if card.banned:
+        ret["error"]=426
+        return ret
+    card.local_template=card_info["local_template"]
+    card.is_public=card_info["is_public"]
+    card.is_editable=card_info["is_editable"]
+
+    card.visible_at=card_info["visible_at"]
+    card.save()
+    ret["card_info"]=card.toDict()
+    return ret
+
+def card_create(request,post_data,ret):
+    if not request.user.is_authenticated():
+        ret["error"]=403
+        return ret
+    card_info=post_data["card_info"]
+    qr_code=QRCodeModel.objects.get(unique_id=post_data["qr_id"])
+    if qr_code.is_recorded:
+        ret["error"]=424
+        return ret
+
+    new_card=CardModel()
+    new_card.author=UserModel.objects.get(user_ptr_id=request.user.id)
+    new_card.local_template=card_info["local_template"]
+    new_card.is_public=card_info["is_public"]
+    new_card.is_editable=card_info["is_editable"]
+    new_card.token=hashlib.md5(post_data["qr_id"]).hexdigest()
+    new_card.visible_at=card_info["visible_at"]
+    new_card.save()
+    qr_code.is_recorded=True
+    qr_code.recorded_at=str(datetime.datetime.now())
+    qr_code.card_token=new_card
+    qr_code.save()
+    ret["card_info"]=new_card.toDict()
+    return ret
+
+
+
+#######################################################
+################## UPLOAD PART ########################
+#######################################################
+
 def handle_uploaded_file(file,md5_str,path):
     m2=hashlib.md5(file.name.encode("utf-8")+md5_str)
     file_type=file.name.split('.')[1]
@@ -121,7 +221,7 @@ def handle_uploaded_file(file,md5_str,path):
     for chunk in file.chunks():
         destination.write(chunk)
     destination.close()
-    return m2.hexdigest(),des_path
+    return m2.hexdigest(),des_path,file_type
 
 class UserAvatarUpload(object):
     def __init__(self,request,ret):
@@ -131,7 +231,7 @@ class UserAvatarUpload(object):
         avatar=forms.ImageField(required=True)
 
     def upload(self,uf):
-        [id_md5,server_path]=handle_uploaded_file(self.request.FILES['avatar'],str(time.time()),"avatar")
+        [id_md5,server_path,kind]=handle_uploaded_file(self.request.FILES['avatar'],str(time.time()),"avatar")
         url_path=server_path[7:]
         img=Image.open(server_path)
         res=CommonResourceModel(id_md5=id_md5)
@@ -165,22 +265,22 @@ class QRStyleUpload(object):
             model=QRStyleModel(name=name)
             sysarg=[]
             if self.request.FILES.has_key('style_border_binary'):
-                file_id,file_path=handle_uploaded_file(self.request.FILES['style_border_binary'],name,jn("qr_template","border"))
-                res1=CommonResourceModel(id_md5=file_id)
+                file_id,file_path,kind=handle_uploaded_file(self.request.FILES['style_border_binary'],name,jn("qr_template","border"))
+                res1=CommonResourceModel(id_md5=file_id,kind=kind)
                 res1.save()
                 model.style_border_binary=res1
                 sysarg.append(file_id)
 
             if self.request.FILES.has_key('style_center_binary'):
-                file_id,file_path=handle_uploaded_file(self.request.FILES['style_center_binary'],name,jn("qr_template","center"))
-                res2=CommonResourceModel(id_md5=file_id)
+                file_id,file_path,kind=handle_uploaded_file(self.request.FILES['style_center_binary'],name,jn("qr_template","center"))
+                res2=CommonResourceModel(id_md5=file_id,kind=kind)
                 res2.save()
                 model.style_center_binary=res2
                 sysarg.append(file_id)
 
             if self.request.FILES.has_key('style_script'):
-                file_id,file_path=handle_uploaded_file(self.request.FILES['style_script'],name,jn("qr_template","script"))
-                res3=CommonResourceModel(id_md5=file_id)
+                file_id,file_path,kind=handle_uploaded_file(self.request.FILES['style_script'],name,jn("qr_template","script"))
+                res3=CommonResourceModel(id_md5=file_id,kind=kind)
                 res3.save()
                 model.style_script=res3
                 sysarg.append(file_id)
@@ -192,6 +292,18 @@ class QRStyleUpload(object):
         except Exception,e:
             self.ret["error"]=e
 
+class CardResourceUpload(object):
+    def __init__(self,request,ret):
+        self.request=request
+        self.ret=ret
+    class UploadForm(forms.Form):
+        card_res=forms.FileField(required=True)
+    def upload(self,uf):
+        [id_md5,server_path,kind]=handle_uploaded_file(self.request.FILES['card_res'],str(time.time()),"card_res")
+        url_path=server_path[7:]
+        res=CommonResourceModel(id_md5=id_md5,kind=kind)
+        res.save()
+        self.ret["id"]=id_md5
 
 def common_upload(request,action):
     if not request.user.is_authenticated():
@@ -201,6 +313,7 @@ def common_upload(request,action):
     act2class={
         "avatar":UserAvatarUpload,
         "qr_style":QRStyleUpload,
+        "card_resource":CardResourceUpload,
     }
     ret={"error":0}
     common_upload_class=act2class[action](request,ret)
@@ -335,6 +448,29 @@ def api(request):
     if ret["error"]==0 and not "action" in post_data:
         ret["error"]=402
         ret["field"]="action"
+
+    #  try:
+        #  request_action=post_data["action"]
+        #  print request_action
+        #  request_action_func_list={
+            #  "user_register":register,
+            #  "user_login":login,
+            #  "user_logout":logout,
+            #  "user_info":user_info,
+            #  "user_edit_profile":user_edit_profile,
+            #  "qr_query":qr_query,
+        #  }
+        #  if ret["error"]==0 and not request_action in request_action_func_list.keys():
+            #  ret["error"]=404
+
+        #  if ret["error"]==0:
+            #  ret=request_action_func_list[request_action](request,post_data,ret)
+    #  except Exception,e:
+        #  ret["error"]=e
+    #  finally:
+        #  ret["time"]=int(round(time.time() * 1e3)/1e3)
+        #  return HttpResponse(json.dumps(ret), content_type="application/json")
+
     request_action=post_data["action"]
     print request_action
     request_action_func_list={
@@ -342,7 +478,11 @@ def api(request):
         "user_login":login,
         "user_logout":logout,
         "user_info":user_info,
-        "user_edit_profile":user_edit_profile
+        "user_edit_profile":user_edit_profile,
+        "qr_query":qr_query,
+        "card_edit":card_edit,
+        "card_create":card_create,
+        "card_query":card_query,
     }
     if ret["error"]==0 and not request_action in request_action_func_list.keys():
         ret["error"]=404

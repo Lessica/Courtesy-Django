@@ -28,7 +28,7 @@ class UserModel(User):
     detailed_info=models.TextField(default="")
     registered_at=models.DateTimeField(auto_now_add=True)
     modified_at=models.DateTimeField(auto_now=True)
-    last_login_at=models.DateTimeField(default = timezone.now)
+    #  last_login_at=models.DateTimeField(default = timezone.now)
     card_count=models.IntegerField(default=0)
     subscribe_count=models.IntegerField(default=0)
     be_subscribe_count=models.IntegerField(default=0)
@@ -51,7 +51,7 @@ class UserModel(User):
             "user_id":self.user_ptr_id,
             "email":self.email,
             "registered_at":int(str(time.mktime(self.registered_at.timetuple()))[:-2]),
-            "last_login_at":int(str(time.mktime(self.last_login_at.timetuple()))[:-2]),
+            "last_login_at":int(str(time.mktime(self.last_login.timetuple()))[:-2]),
             "card_count":self.card_count,
             "profile":{
                 "nick":self.nick,

@@ -31,19 +31,45 @@ class TemplateModel(models.Model):
 class CardModel(models.Model):
     class Meta:
         app_label = 'qr_gift'
-    id=models.IntegerField(primary_key=True,editable=False)
-    template=models.ForeignKey(TemplateModel)
+    #  id=models.IntegerField(primary_key=True,editable=False)
+    template=models.ForeignKey(TemplateModel,null=True)
+    local_template=models.TextField(null=True)
     author=models.ForeignKey(UserModel,related_name='author_usermodel')
-    read_by=models.ForeignKey(UserModel,related_name='read_by_usermodel')
-    token=models.CharField(max_length=32)
+    read_by=models.ForeignKey(UserModel,related_name='read_by_usermodel',null=True)
+    token=models.CharField(max_length=32,unique=True)
     is_public=models.BooleanField()
     visible_at=models.DateTimeField()
-    first_read_at=models.DateTimeField()
-    view_count=models.IntegerField()
+    first_read_at=models.DateTimeField(null=True)
+    view_count=models.IntegerField(default=0)
     is_editable=models.BooleanField()
-    edited_count=models.IntegerField()
+    edited_count=models.IntegerField(default=0)
     created_at=models.DateTimeField(auto_now_add=True)
     modified_at=models.DateTimeField(auto_now=True)
-    stars=models.IntegerField()
-    banned=models.BooleanField()
+    stars=models.IntegerField(default=0)
+    banned=models.BooleanField(default=False)
+    def toDict(self):
+        dic={
+            "local_template":self.local_template,
+            "author":self.author.email,
+            "token":self.token,
+            "is_public":self.is_public,
+            "view_count":self.view_count,
+            "is_editable":self.is_editable,
+            "edited_count":self.edited_count,
+            "created_at":int(str(time.mktime(self.created_at.timetuple()))[:-2]),
+            "modified_at":int(str(time.mktime(self.modified_at.timetuple()))[:-2]),
+            "stars":self.stars,
+        }
+
+        if self.read_by:
+            dic["read_by"]=self.read_by.email
+        else:
+            dic["read_by"]=""
+
+        if self.first_read_at:
+            dic["first_read_at"]=int(str(time.mktime(self.first_read_at.timetuple()))[:-2]),
+        else:
+            dic["first_read_at"]=self.first_read_at
+        return dic
+
 
