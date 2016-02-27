@@ -28,6 +28,7 @@ urlpatterns = [
     #  url(r'^user/upload$', qr_gift_views.user_avatar_upload),
     url(r'^qrcode/arrise$', qr_gift_views.qr_arrise),
     url(r'^upload/(\w+)$', qr_gift_views.common_upload),
+    url(r'^download/(\w+)$', qr_gift_views.common_download),
     #  url(r'^accounts/register$', qr_gift_views.register),
     #  url(r'^accounts/login$',qr_gift_views.login),
     #  url(r'^accounts/logout/$',qr_gift_views.logout),

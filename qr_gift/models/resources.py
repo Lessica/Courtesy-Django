@@ -14,8 +14,9 @@ class CommonResourceModel(models.Model):
     class Meta:
         app_label = 'qr_gift'
     id=models.AutoField(primary_key=True,editable=False)
-    origin_url=models.URLField()
-    cdn_url=models.URLField(null=True)
+    #  origin_url=models.URLField()
+    #  cdn_url=models.URLField(null=True)
+    id_md5=models.CharField(max_length=32,default="")
     uploaded_at=models.DateTimeField(auto_now_add=True)
     def toDict(self):
         ret={
@@ -23,7 +24,6 @@ class CommonResourceModel(models.Model):
             "origin_url":self.origin_url,
         }
         return ret
-
 class AvatarImageModel(CommonResourceModel):
     class Meta:
         app_label = 'qr_gift'

@@ -40,7 +40,8 @@ class UserModel(User):
     gender=models.IntegerField(default=1)
     province=models.CharField(max_length=32,default="")
     city=models.CharField(max_length=32,default="")
-    constellation=models.CharField(max_length=32,default="")
+    area=models.CharField(max_length=32,default="")
+    #  constellation=models.CharField(max_length=32,default="")
 
     objects = UserManager()
     def __unicode__(self):
@@ -54,16 +55,17 @@ class UserModel(User):
             "card_count":self.card_count,
             "profile":{
                 "nick":self.nick,
-                "avatar":self.avatar,
+                #  "avatar":self.avatar.id_md5,
                 "mobile":self.mobile,
                 "birthday":self.birthday,
                 "gender":self.gender,
                 "province":self.province,
                 "city":self.city,
-                "constellation":self.constellation,
+                "area":self.area,
+                #  "constellation":self.constellation,
                 "introduction":self.detailed_info,
             }
         }
         if self.avatar:
-            dict["avatar"]=self.avatar.id
+            dic["profile"]["avatar"]=self.avatar.id_md5
         return dic
