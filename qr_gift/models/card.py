@@ -6,12 +6,17 @@
 # @author x565178035,x565178035@126.com
 # @version 1.0
 # @date 2016-02-13
+
 from __future__ import unicode_literals
 
 from django.db import models
 
+
 from resources import *
 from account import *
+import datetime
+import time
+
 
 class TemplateModel(models.Model):
     class Meta:
@@ -49,8 +54,7 @@ class CardModel(models.Model):
     banned=models.BooleanField(default=False)
     def toDict(self):
         dic={
-            "local_template":self.local_template,
-            "author":self.author.email,
+            "author":self.author.toDict(),
             "token":self.token,
             "is_public":self.is_public,
             "view_count":self.view_count,
@@ -59,10 +63,12 @@ class CardModel(models.Model):
             "created_at":int(str(time.mktime(self.created_at.timetuple()))[:-2]),
             "modified_at":int(str(time.mktime(self.modified_at.timetuple()))[:-2]),
             "stars":self.stars,
+            "visible_at":int(str(time.mktime(self.visible_at.timetuple()))[:-2]),
+            "local_template":self.local_template,
         }
 
         if self.read_by:
-            dic["read_by"]=self.read_by.email
+            dic["read_by"]=self.read_by.toDict()
         else:
             dic["read_by"]=""
 
@@ -70,6 +76,8 @@ class CardModel(models.Model):
             dic["first_read_at"]=int(str(time.mktime(self.first_read_at.timetuple()))[:-2]),
         else:
             dic["first_read_at"]=self.first_read_at
+        #  tz_info = self.visible_at.tzinfo
+        #  if time.mktime(self.visible_at.timetuple())>time.time():
         return dic
 
 

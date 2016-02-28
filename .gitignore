@@ -1,1 +1,4 @@
 *.pyc
+
+.exvim.qr_gift_pro/
+qr_gift/static/

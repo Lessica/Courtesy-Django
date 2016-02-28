@@ -13,8 +13,12 @@ inoremap <buffer> <silent> " =AutoPairsInsert('"')
 inoremap <buffer> <silent> ' =AutoPairsInsert('''')
 inoremap <buffer> <silent> ( =AutoPairsInsert('(')
 inoremap <buffer> <silent> ) =AutoPairsInsert(')')
-noremap <buffer> <silent> î :call AutoPairsJump()
-noremap <buffer> <silent> ð :call AutoPairsToggle()
+nnoremap <buffer> <silent> î :call AutoPairsJump()
+xnoremap <buffer> <silent> î :call AutoPairsJump()
+onoremap <buffer> <silent> î :call AutoPairsJump()
+nnoremap <buffer> <silent> ð :call AutoPairsToggle()
+xnoremap <buffer> <silent> ð :call AutoPairsToggle()
+onoremap <buffer> <silent> ð :call AutoPairsToggle()
 inoremap <buffer> <silent> [ =AutoPairsInsert('[')
 inoremap <buffer> <silent> ] =AutoPairsInsert(']')
 inoremap <buffer> <silent> ` =AutoPairsInsert('`')
@@ -127,40 +131,100 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-127
+130
+normal! zo
+132
 normal! zo
 134
 normal! zo
-141
+139
 normal! zo
-148
+142
 normal! zo
-134
+147
+normal! zo
+150
+normal! zo
+154
+normal! zo
+159
+normal! zo
+160
+normal! zo
+166
+normal! zo
+171
+normal! zo
+174
+normal! zo
+186
+normal! zo
+192
+normal! zo
+217
+normal! zo
+218
+normal! zo
+222
+normal! zo
+224
+normal! zo
+308
+normal! zo
+312
+normal! zo
+314
+normal! zo
+321
+normal! zo
+326
+normal! zo
+350
+normal! zo
+350
 normal! zc
-237
+362
 normal! zo
-238
+374
 normal! zo
-240
+382
 normal! zo
-243
+399
 normal! zo
-249
+403
 normal! zo
-257
+418
 normal! zo
-274
+423
 normal! zo
-278
+430
 normal! zo
-237
-normal! zc
-let s:l = 134 - ((16 * winheight(0) + 18) / 37)
+432
+normal! zo
+443
+normal! zo
+446
+normal! zo
+448
+normal! zo
+455
+normal! zo
+458
+normal! zo
+461
+normal! zo
+468
+normal! zo
+479
+normal! zo
+482
+normal! zo
+let s:l = 130 - ((5 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-134
-normal! 0
+130
+normal! 028|
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

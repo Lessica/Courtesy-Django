@@ -10,6 +10,17 @@ D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\migrations\0003_usermo
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\migrations\0004_auto_20160222_1007.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\migrations\0005_auto_20160222_2055.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\migrations\0006_auto_20160222_2225.py
+D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\migrations\0007_auto_20160222_2242.py
+D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\migrations\0008_auto_20160222_2313.py
+D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\migrations\0009_auto_20160222_2316.py
+D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\migrations\0010_auto_20160222_2321.py
+D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\migrations\0011_auto_20160223_2210.py
+D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\migrations\0012_auto_20160225_2205.py
+D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\migrations\0013_auto_20160226_1717.py
+D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\migrations\0014_auto_20160226_1800.py
+D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\migrations\0015_auto_20160226_1857.py
+D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\migrations\0016_auto_20160226_1859.py
+D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\migrations\0017_auto_20160227_2122.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\migrations\__init__.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py
@@ -18,8 +29,7 @@ D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\resources.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\signals.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\__init__.py
-D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\script\3e2fa9b832f58c538bd945e30b9e2cc2.py
-D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\script\8b283c39e5a2dbe118c5259a355b6b78.py
+D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\script\1a5460c9214f69c1422674c4e04f9f8d.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\urls.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\wsgi.py

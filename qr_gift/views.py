@@ -5,7 +5,6 @@ from django.shortcuts import render_to_response
 from django.contrib import auth
 from django import forms
 from django.core.exceptions import *
-import django.utils.timezone as timezone
 
 from .models import *
 import re
@@ -91,9 +90,15 @@ def logout(request,post_data,ret):
 def user_info(request,post_data,ret):
     if not request.user.is_authenticated():
         ret["error"]=403
+        return ret
+    if post_data.has_key("user_id"):
+        user=UserModel.objects.get(user_ptr_id=post_data["user_id"])
+    elif post_data.has_key("user_email"):
+        user=UserModel.objects.get(email=post_data["user_email"])
     else:
-        ret["account_info"]=UserModel.objects.get(user_ptr_id=request.user.id).toDict()
-        ret["account_info"]["has_profile"] = True;
+        user=UserModel.objects.get(user_ptr_id=request.user.id)
+    ret["account_info"]=user.toDict()
+    ret["account_info"]["has_profile"] = True;
     return ret
 
 def user_edit_profile(request,post_data,ret):
@@ -127,7 +132,7 @@ def user_edit_profile(request,post_data,ret):
 ################## QR_CODE PART #######################
 #######################################################
 def qr_query(request,post_data,ret):
-    qr_id=post_data["id"]
+    qr_id=post_data["qr_id"]
     try:
         qr_model=QRCodeModel.objects.get(unique_id=qr_id)
     except ( ValueError,ObjectDoesNotExist ):
@@ -135,11 +140,23 @@ def qr_query(request,post_data,ret):
         return ret
     ret["qr_info"]=qr_model.toDict()
     qr_model.scan_count=qr_model.scan_count+1
-    if qr_model.is_recorded==True:
-        card=qr_model.card_token
-        ret["card_info"]=card.toDict()
-        if request.user.email!=card.author.email:
-            card.view_count=card.view_count+1
+    #  if qr_model.is_recorded==True:
+        #  card=qr_model.card_token
+        #  ret["card_info"]=card.toDict()
+        #  if not request.user.is_authenticated():
+            #  card.view_count=card.view_count+1
+            #  if not card.first_read_at:
+                #  card.read_by_id=request.user.id
+            #  card.save()
+
+        #  elif request.user.id!=card.author_id:
+            #  card.view_count=card.view_count+1
+            #  if not card.first_read_at:
+                #  card.read_by_id=request.user.id
+                #  card.first_read_at=datetime.datetime.now()
+
+            #  card.save()
+    qr_model.save()
 
     return ret
 
@@ -147,13 +164,32 @@ def card_query(request,post_data,ret):
     try:
         card=CardModel.objects.get(token=post_data["token"])
     except ( ValueError,ObjectDoesNotExist ):
-        ret["error"]=423
+        ret["error"]=404
+        return ret
+    except KeyError:
+        ret["error"]=401
         return ret
     ##TODO
     if card.banned:
-        ret["error"]=426
+        ret["error"]=425
         return ret
+
+    if not request.user.is_authenticated():
+        card.view_count=card.view_count+1
+        if not card.first_read_at:
+            card.first_read_at=datetime.datetime.now()
+        card.save()
+
+    elif request.user.id!=card.author_id:
+        card.view_count=card.view_count+1
+        if not card.first_read_at:
+            card.read_by_id=request.user.id
+            card.first_read_at=datetime.datetime.now()
+        card.save()
     ret["card_info"]=card.toDict()
+
+    if card.visible_at>datetime.datetime.now():
+        ret["card_info"]["local_template"]=None
     return ret
 def card_edit(request,post_data,ret):
     if not request.user.is_authenticated():
@@ -163,21 +199,21 @@ def card_edit(request,post_data,ret):
     try:
         card=CardModel.objects.get(token=post_data["token"])
     except ( ValueError,ObjectDoesNotExist ):
-        ret["error"]=423
+        ret["error"]=404
         return ret
     ##TODO
-    card.author=UserModel.objects.get(user_ptr_id=request.user.id)
-    if request.user.email!=card.author.email:
+    #  card.author=UserModel.objects.get(user_ptr_id=request.user.id)
+    if request.user.id!=card.author_id:
         ret["error"]=425
         return ret
     if card.banned:
-        ret["error"]=426
+        ret["error"]=425
         return ret
     card.local_template=card_info["local_template"]
     card.is_public=card_info["is_public"]
     card.is_editable=card_info["is_editable"]
-
-    card.visible_at=card_info["visible_at"]
+    card.visible_at=datetime.datetime.fromtimestamp(card_info["visible_at"])
+    card.edited_count=card.edited_count+1
     card.save()
     ret["card_info"]=card.toDict()
     return ret
@@ -198,8 +234,9 @@ def card_create(request,post_data,ret):
     new_card.is_public=card_info["is_public"]
     new_card.is_editable=card_info["is_editable"]
     new_card.token=hashlib.md5(post_data["qr_id"]).hexdigest()
-    new_card.visible_at=card_info["visible_at"]
+    new_card.visible_at=datetime.datetime.fromtimestamp(card_info["visible_at"])
     new_card.save()
+
     qr_code.is_recorded=True
     qr_code.recorded_at=str(datetime.datetime.now())
     qr_code.card_token=new_card
@@ -212,7 +249,27 @@ def card_create(request,post_data,ret):
 #######################################################
 ################## UPLOAD PART ########################
 #######################################################
+#TODO
+def res_query(request,post_data,ret):
+    sha_256=post_data["hash"]
+    try:
+        ret["res"]=CommonResourceModel.objects.get(sha_256=sha_256).toDict()
+    except ( ValueError,ObjectDoesNotExist ):
+        ret["res"]=None
+    return ret
 
+def get_file_md5(filename):
+    if not os.path.isfile(filename):
+        return
+    myhash = hashlib.md5()
+    f = file(filename,'rb')
+    while True:
+        b = f.read(8096)
+        if not b :
+            break
+        myhash.update(b)
+    f.close()
+    return myhash.hexdigest()
 def handle_uploaded_file(file,md5_str,path):
     m2=hashlib.md5(file.name.encode("utf-8")+md5_str)
     file_type=file.name.split('.')[1]
@@ -222,6 +279,13 @@ def handle_uploaded_file(file,md5_str,path):
         destination.write(chunk)
     destination.close()
     return m2.hexdigest(),des_path,file_type
+def file2sha256(filename):
+    f = open(filename, 'rb')
+    sh = hashlib.sha256()
+    sh.update(f.read())
+    f.close()
+    return sh.hexdigest()
+
 
 class UserAvatarUpload(object):
     def __init__(self,request,ret):
@@ -301,7 +365,7 @@ class CardResourceUpload(object):
     def upload(self,uf):
         [id_md5,server_path,kind]=handle_uploaded_file(self.request.FILES['card_res'],str(time.time()),"card_res")
         url_path=server_path[7:]
-        res=CommonResourceModel(id_md5=id_md5,kind=kind)
+        res=CommonResourceModel(id_md5=id_md5,kind=kind,sha_256=file2sha256(server_path))
         res.save()
         self.ret["id"]=id_md5
 
@@ -313,7 +377,7 @@ def common_upload(request,action):
     act2class={
         "avatar":UserAvatarUpload,
         "qr_style":QRStyleUpload,
-        "card_resource":CardResourceUpload,
+        "card_res":CardResourceUpload,
     }
     ret={"error":0}
     common_upload_class=act2class[action](request,ret)
@@ -408,7 +472,7 @@ def common_download(request,action):
         return HttpResponse(json.dumps(ret), content_type="application/json")
 
     act2class={
-        "qr_arrise":QRArriseDownload,
+        "qr_code":QRArriseDownload,
     }
     #  ret={"error":0}
     common_download_class=act2class[action](request)
@@ -449,27 +513,6 @@ def api(request):
         ret["error"]=402
         ret["field"]="action"
 
-    #  try:
-        #  request_action=post_data["action"]
-        #  print request_action
-        #  request_action_func_list={
-            #  "user_register":register,
-            #  "user_login":login,
-            #  "user_logout":logout,
-            #  "user_info":user_info,
-            #  "user_edit_profile":user_edit_profile,
-            #  "qr_query":qr_query,
-        #  }
-        #  if ret["error"]==0 and not request_action in request_action_func_list.keys():
-            #  ret["error"]=404
-
-        #  if ret["error"]==0:
-            #  ret=request_action_func_list[request_action](request,post_data,ret)
-    #  except Exception,e:
-        #  ret["error"]=e
-    #  finally:
-        #  ret["time"]=int(round(time.time() * 1e3)/1e3)
-        #  return HttpResponse(json.dumps(ret), content_type="application/json")
 
     request_action=post_data["action"]
     print request_action
@@ -483,6 +526,7 @@ def api(request):
         "card_edit":card_edit,
         "card_create":card_create,
         "card_query":card_query,
+        "res_query":res_query,
     }
     if ret["error"]==0 and not request_action in request_action_func_list.keys():
         ret["error"]=404

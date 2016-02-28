@@ -17,12 +17,13 @@ class CommonResourceModel(models.Model):
     #  origin_url=models.URLField()
     #  cdn_url=models.URLField(null=True)
     id_md5=models.CharField(max_length=32,default="")
+    sha_256=models.CharField(max_length=64,default="")
     kind=models.CharField(max_length=4,default="")
     uploaded_at=models.DateTimeField(auto_now_add=True)
     def toDict(self):
         ret={
-            "id":self.id,
-            "origin_url":self.origin_url,
+            "id":self.id_md5,
+            "sha_256":self.sha_256,
         }
         return ret
 
