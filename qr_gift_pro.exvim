@@ -4,7 +4,7 @@
 
 -- Choose your project type
 -- Press <F5> to apply project_type for other settings
-project_type = all -- { all, build, clang, data, doc, game, server, shell, web, ... }
+project_type = django -- { all, build, clang, data, doc, game, server, shell, web, ... }
 
 -- Project Settings:
 version = 12
@@ -12,8 +12,8 @@ project_name = 'qr_gift_pro'
 
 -- File And Folder Filters:
 folder_filter_mode = include -- { include, exclude }
-folder_filter +=
-file_filter +=py
+folder_filter += qr_gift/migrations
+file_filter += py
 file_ignore_pattern +=
 
 -- Editing:

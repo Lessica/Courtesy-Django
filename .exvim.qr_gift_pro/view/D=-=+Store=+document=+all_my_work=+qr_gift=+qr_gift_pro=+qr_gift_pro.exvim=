@@ -3,23 +3,10 @@ argglobal
 let s:cpo_save=&cpo
 set cpo&vim
 inoremap <buffer> <silent> <BS> =AutoPairsDelete()
-nnoremap <buffer> <silent> <NL> :call exproject#cursor_jump( '\C\[F\]', 'down' )
-nnoremap <buffer> <silent>  :call exproject#cursor_jump( '\C\[F\]', 'up' )
-nnoremap <buffer> <silent>  :call exproject#confirm_select('')
-nnoremap <buffer> <silent>   :call exproject#toggle_zoom()
 inoremap <buffer> <silent> î :call AutoPairsJump()a
 inoremap <buffer> <silent> <expr> ð AutoPairsToggle()
 inoremap <buffer> <silent> â =AutoPairsBackInsert()
 inoremap <buffer> <silent> å =AutoPairsFastWrap()
-nnoremap <buffer> <silent> O :call exproject#newfolder()
-nnoremap <buffer> <silent> \r :EXProjectRefresh
-nnoremap <buffer> <silent> \R :EXProjectBuild
-nnoremap <buffer> <silent> o :call exproject#newfile()
-nnoremap <buffer> <silent> <C-Tab> :call EXProjectToNERDTree()
-nnoremap <buffer> <silent> <S-2-LeftMouse> :call exproject#confirm_select('shift')
-nnoremap <buffer> <silent> <S-CR> :call exproject#confirm_select('shift')
-nnoremap <buffer> <silent> <2-LeftMouse> :call exproject#confirm_select('')
-nnoremap <buffer> <silent> <F1> :call exproject#toggle_help()
 nnoremap <buffer> <silent> <F5> :call vimentry#apply_project_type()
 inoremap <buffer> <silent>  =AutoPairsDelete()
 inoremap <buffer> <silent>   =AutoPairsSpace()
@@ -27,8 +14,12 @@ inoremap <buffer> <silent> " =AutoPairsInsert('"')
 inoremap <buffer> <silent> ' =AutoPairsInsert('''')
 inoremap <buffer> <silent> ( =AutoPairsInsert('(')
 inoremap <buffer> <silent> ) =AutoPairsInsert(')')
-noremap <buffer> <silent> î :call AutoPairsJump()
-noremap <buffer> <silent> ð :call AutoPairsToggle()
+nnoremap <buffer> <silent> î :call AutoPairsJump()
+xnoremap <buffer> <silent> î :call AutoPairsJump()
+onoremap <buffer> <silent> î :call AutoPairsJump()
+nnoremap <buffer> <silent> ð :call AutoPairsToggle()
+xnoremap <buffer> <silent> ð :call AutoPairsToggle()
+onoremap <buffer> <silent> ð :call AutoPairsToggle()
 inoremap <buffer> <silent> [ =AutoPairsInsert('[')
 inoremap <buffer> <silent> ] =AutoPairsInsert(']')
 inoremap <buffer> <silent> ` =AutoPairsInsert('`')
@@ -69,19 +60,19 @@ setlocal nodiff
 setlocal equalprg=
 setlocal errorformat=
 setlocal expandtab
-if &filetype != 'exproject'
-setlocal filetype=exproject
+if &filetype != 'vimentry'
+setlocal filetype=vimentry
 endif
 setlocal foldcolumn=0
 setlocal foldenable
 setlocal foldexpr=0
 setlocal foldignore=#
-setlocal foldlevel=9999
+setlocal foldlevel=1
 setlocal foldmarker={,}
 setlocal foldmethod=marker
-setlocal foldminlines=0
+setlocal foldminlines=1
 setlocal foldnestmax=20
-setlocal foldtext=exproject#foldtext()
+setlocal foldtext=foldtext()
 setlocal formatexpr=
 setlocal formatoptions=tcq
 setlocal formatlistpat=^\\s*\\d\\+[\\]:.)}\\t\ ]\\s*
@@ -104,7 +95,7 @@ setlocal matchpairs=(:),{:},[:]
 setlocal modeline
 setlocal modifiable
 setlocal nrformats=
-setlocal nonumber
+setlocal number
 setlocal numberwidth=4
 setlocal omnifunc=
 setlocal path=
@@ -124,12 +115,12 @@ setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%!airline#statusline(1)
+setlocal statusline=%!airline#statusline(2)
 setlocal suffixesadd=
 setlocal noswapfile
 setlocal synmaxcol=3000
-if &syntax != 'exproject'
-setlocal syntax=exproject
+if &syntax != 'vimentry'
+setlocal syntax=vimentry
 endif
 setlocal tabstop=4
 setlocal tags=
@@ -137,16 +128,16 @@ setlocal textwidth=0
 setlocal thesaurus=
 setlocal noundofile
 setlocal undolevels=-123456
-setlocal winfixheight
-setlocal winfixwidth
+setlocal nowinfixheight
+setlocal nowinfixwidth
 setlocal nowrap
 setlocal wrapmargin=0
-let s:l = 16 - ((15 * winheight(0) + 18) / 37)
+let s:l = 17 - ((16 * winheight(0) + 18) / 37)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-16
-normal! 016|
+17
+normal! 022|
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

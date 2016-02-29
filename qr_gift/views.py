@@ -255,7 +255,7 @@ def res_query(request,post_data,ret):
     try:
         ret["res"]=CommonResourceModel.objects.get(sha_256=sha_256).toDict()
     except ( ValueError,ObjectDoesNotExist ):
-        ret["res"]=None
+        ret["error"]=404
     return ret
 
 def get_file_md5(filename):
