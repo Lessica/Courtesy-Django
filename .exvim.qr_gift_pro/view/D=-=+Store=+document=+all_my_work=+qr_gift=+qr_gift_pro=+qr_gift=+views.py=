@@ -114,7 +114,7 @@ setlocal nospell
 setlocal spellcapcheck=[.?!]\\_[\\])'\"\	\ ]\\+
 setlocal spellfile=
 setlocal spelllang=en
-setlocal statusline=%!airline#statusline(2)
+setlocal statusline=%!airline#statusline(3)
 setlocal suffixesadd=.py
 setlocal swapfile
 setlocal synmaxcol=3000
@@ -131,18 +131,48 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-254
+375
 normal! zo
-256
+380
 normal! zo
-258
+416
 normal! zo
-let s:l = 256 - ((20 * winheight(0) + 18) / 37)
+417
+normal! zo
+421
+normal! zo
+428
+normal! zo
+429
+normal! zo
+431
+normal! zo
+439
+normal! zo
+449
+normal! zo
+460
+normal! zo
+464
+normal! zo
+479
+normal! zo
+484
+normal! zo
+490
+normal! zo
+492
+normal! zo
+499
+normal! zo
+503
+normal! zo
+let s:l = 433 - ((20 * winheight(0) + 24) / 48)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-256
-normal! 076|
+433
+normal! 036|
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

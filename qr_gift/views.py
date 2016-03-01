@@ -19,8 +19,6 @@ from PIL import Image
 import datetime
 import os
 
-SITE_ADDR="http://10.1.0.2222:8000/"
-
 #######################################################
 ################## USER PART #######################
 #######################################################
@@ -414,18 +412,21 @@ def password_change():
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 
-class QRArriseDownload(object):
-    def __init__(self,request):
-        self.request=request
-    class Form(forms.Form):
+class QRArriseDownloadForm(forms.Form):
+    def __init__(self, *args, **kwargs):
+        super(QRArriseDownloadForm,self).__init__(*args, **kwargs)
         choice=[]
         QRStyles=QRStyleModel.objects.all()
         for QRStyle in QRStyles:
             choice.append( (QRStyle.name,QRStyle.name) )
 
-        qr_style = forms.ChoiceField(choices=choice)
-        channel=forms.CharField(required=True)
-        num=forms.IntegerField(required=True)
+        self.fields["qr_style"] = forms.ChoiceField(choices=choice)
+        self.fields["channel"]=forms.CharField(required=True)
+        self.fields["num"]=forms.IntegerField(required=True)
+
+class QRArriseDownload(object):
+    def __init__(self,request):
+        self.request=request
     def download(self,uf):
         qr_style_name = uf.cleaned_data['qr_style']
         qr_channel = uf.cleaned_data['channel']
@@ -480,12 +481,11 @@ def common_download(request,action):
         return HttpResponse(json.dumps(ret), content_type="application/json")
 
     act2class={
-        "qr_arrise":QRArriseDownload,
+        "qr_arrise":( QRArriseDownload,QRArriseDownloadForm ),
     }
     #  ret={"error":0}
-    common_download_class=act2class[action](request)
-    common_download_form=common_download_class.Form
-
+    common_download_class=act2class[action][0](request)
+    common_download_form=act2class[action][1]
     if request.method == "POST":
         uf = common_download_form(request.POST,request.FILES)
         if uf.is_valid():

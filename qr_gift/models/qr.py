@@ -30,6 +30,13 @@ class QRStyleModel(models.Model):
     preview=models.OneToOneField(CommonResourceModel,related_name='preview_res',null=True)
     def __unicode__(self):
         return self.name
+    @staticmethod
+    def getChoice():
+        style_objs=QRStyleModel.objects.all()
+        styles=[]
+        for style_obj in style_objs:
+            styles.append( (style_obj.name,style_obj.name) )
+        return styles
 
 class QRCodeModel(models.Model):
     class Meta:
