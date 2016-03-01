@@ -480,7 +480,7 @@ def common_download(request,action):
         return HttpResponse(json.dumps(ret), content_type="application/json")
 
     act2class={
-        "qr_code":QRArriseDownload,
+        "qr_arrise":QRArriseDownload,
     }
     #  ret={"error":0}
     common_download_class=act2class[action](request)
