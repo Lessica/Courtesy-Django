@@ -17,6 +17,7 @@ import StringIO
 import time
 import Image
 import datetime
+import os
 
 SITE_ADDR="http://10.1.0.2222:8000/"
 
@@ -273,12 +274,15 @@ def get_file_md5(filename):
 def handle_uploaded_file(file,md5_str,path):
     m2=hashlib.md5(file.name.encode("utf-8")+md5_str)
     file_type=file.name.split('.')[1]
-    des_path=jn("qr_gift","static",path,m2.hexdigest()+"."+file_type)
-    destination = open(des_path , 'wb+')
+    path=jn("qr_gift","static",path)
+    file_path=jn(path,m2.hexdigest()+"."+file_type)
+    if not os.path.exists( path ):
+        os.makedirs(path)
+    destination = open(file_path , 'wb+')
     for chunk in file.chunks():
         destination.write(chunk)
     destination.close()
-    return m2.hexdigest(),des_path,file_type
+    return m2.hexdigest(),file_path,file_type
 def file2sha256(filename):
     f = open(filename, 'rb')
     sh = hashlib.sha256()
@@ -437,7 +441,11 @@ class QRArriseDownload(object):
 
         QRCodeModel.objects.bulk_create(qr_list)
 
-        qr_context_path=jn("qr_gift","static","qrlist","qrlist.txt" )
+
+        path=jn("qr_gift","static","qrlist")
+        qr_context_path=jn(path,"qrlist.txt" )
+        if not os.path.exists( path ):
+            os.makedirs(path)
         qr_context=open(qr_context_path,"w")
         qr_context.write( "\n".join(qr_content) )
         qr_context.close()
