@@ -15,7 +15,7 @@ from os.path import join as jn
 import zipfile
 import StringIO
 import time
-import Image
+from PIL import Image
 import datetime
 import os
 
