@@ -126,10 +126,9 @@ def user_edit_profile(request,post_data,ret):
 
     return ret
 
-
-#######################################################
-################## QR_CODE PART #######################
-#######################################################
+"""
+QR_CODE PART
+"""
 def qr_query(request,post_data,ret):
     qr_id=post_data["qr_id"]
     try:
@@ -243,6 +242,15 @@ def card_create(request,post_data,ret):
     ret["card_info"]=new_card.toDict()
     return ret
 
+"""
+    news
+"""
+
+def news_query(request,post_data,ret):
+    date_str=post_data["s_date"]
+    md_news=DaliyNewsModel.objects.get(date_str=date_str)
+    ret["news"]=md_news.toDict()
+    return ret
 
 
 #######################################################
@@ -358,6 +366,48 @@ class QRStyleUpload(object):
         except Exception,e:
             self.ret["error"]=e
 
+class DaliyNewsUpload(object):
+    def __init__(self,request,ret):
+        self.request=request
+        self.ret=ret
+    class UploadForm(forms.Form):
+        img_res=forms.FileField(required=True)
+        voice_res=forms.FileField(required=False)
+        video_res=forms.FileField(required=False)
+        fdate=forms.CharField()
+        fstring=forms.CharField(widget=forms.Textarea)
+
+        choice=[]
+        styles=DaliyNewsStyleModel.objects.all()
+        for style in styles:
+            choice.append( (style.id,style.style_name) )
+        fid = forms.ChoiceField(choices=choice)
+
+    def upload(self,uf):
+        model=DaliyNewsModel()
+        model.string=uf.cleaned_data['fstring']
+        model.date_str=uf.cleaned_data['fdate']
+
+        file_id,file_path,kind=handle_uploaded_file(self.request.FILES['img_res'],str(time.time()),jn("news","image"))
+        res1=CommonResourceModel(id_md5=file_id,kind=kind)
+        res1.save()
+        model.image=res1
+
+        if self.request.FILES.has_key('voice_res'):
+            file_id,file_path,kind=handle_uploaded_file(self.request.FILES['voice_res'],str(time.time()),jn("news","voice"))
+            res2=CommonResourceModel(id_md5=file_id,kind=kind)
+            res2.save()
+            model.voice=res2
+
+        if self.request.FILES.has_key('video_res'):
+            file_id,file_path,kind=handle_uploaded_file(self.request.FILES['video_res'],str(time.time()),jn("news","video"))
+            res3=CommonResourceModel(id_md5=file_id,kind=kind)
+            res3.save()
+            model.video=res3
+
+        model.style=DaliyNewsStyleModel.objects.get(id=uf.cleaned_data['fid'])
+        model.save()
+
 class CardResourceUpload(object):
     def __init__(self,request,ret):
         self.request=request
@@ -380,6 +430,7 @@ def common_upload(request,action):
         "avatar":UserAvatarUpload,
         "qr_style":QRStyleUpload,
         "card_res":CardResourceUpload,
+        "news":DaliyNewsUpload,
     }
     ret={"error":0}
     common_upload_class=act2class[action](request,ret)
@@ -511,6 +562,7 @@ def qr_arrise(request):
     return render_to_response('qr_arrise.html',{'uf':uf})
 
 
+
 def api(request):
     ret={"error":0}
 
@@ -520,7 +572,6 @@ def api(request):
     if ret["error"]==0 and not "action" in post_data:
         ret["error"]=402
         ret["field"]="action"
-
 
     request_action=post_data["action"]
     print request_action
@@ -535,6 +586,7 @@ def api(request):
         "card_create":card_create,
         "card_query":card_query,
         "res_query":res_query,
+        "news_query":news_query,
     }
     if ret["error"]==0 and not request_action in request_action_func_list.keys():
         ret["error"]=404

@@ -11,8 +11,8 @@ version = 12
 project_name = 'qr_gift_pro'
 
 -- File And Folder Filters:
-folder_filter_mode = include -- { include, exclude }
-folder_filter += qr_gift/migrations
+folder_filter_mode = exclude -- { include, exclude }
+folder_filter += migrations,static
 file_filter += py
 file_ignore_pattern +=
 

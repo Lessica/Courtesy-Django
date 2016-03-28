@@ -450,3 +450,32 @@ POST /upload/card_res (Field: res)
     "error": 0
 }
 ```
+### 索取新闻 News Query
+
+``` json
+{
+    "action": "news_query",
+    "s_date": "2016-03-28"
+}
+```
+``` json
+{
+    "news": {
+        "style": {
+            "style_id": 1,
+            "style_name": "black"
+        },
+        "string": "test",
+        "image": {
+            "sha_256": "",
+            "id": "f5f31fe7306de68436e07ef0fd0a47ee"
+        },
+        "video": null,
+        "date": "2016-03-28",
+        "voice": null
+    },
+    "time": 1459172482,
+    "error": 0
+}
+
+```

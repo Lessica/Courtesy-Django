@@ -12,4 +12,6 @@
 *.exe                 IGNORE
 *.lnk                 IGNORE
 *.min.js              IGNORE
+*\\migrations\\*    IGNORE
+*\\static\\*    IGNORE
 *.py    text

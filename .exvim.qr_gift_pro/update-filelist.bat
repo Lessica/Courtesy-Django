@@ -1,10 +1,10 @@
 @echo off
 set DEST=.\.exvim.qr_gift_pro
-set TOOLS=C:\exVim\vimfiles\tools\
+set TOOLS=C:\Users\Anemone\.vim\tools\
 set FILE_SUFFIXS=*.PY
-set GAWK_SUFFIX=inc
+set GAWK_SUFFIX=exc
 set FILE_FILTER_PATTERN="\\\\.py$"
-set FOLDER_FILTER_PATTERN=".*\\\\qr_gift/migrations\\\\.*"
+set FOLDER_FILTER_PATTERN=".*\\\\migrations\\\\.*|.*\\\\static\\\\.*"
 set TMP=%DEST%\_files_gawk
 set TMP2=%DEST%\_files
 set TARGET=%DEST%\files

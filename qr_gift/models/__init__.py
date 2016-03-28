@@ -12,4 +12,5 @@ from account import *
 from resources import *
 from card import *
 from qr import *
+from daliynews import *
 

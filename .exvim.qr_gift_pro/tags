@@ -4,3 +4,291 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.8	//
+ALLOWED_HOSTS	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^ALLOWED_HOSTS = []$/;"	v
+AUTH_PASSWORD_VALIDATORS	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^AUTH_PASSWORD_VALIDATORS = [$/;"	v
+AppConfig	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\apps.py	/^from django.apps import AppConfig$/;"	i
+AvatarImageModel	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\resources.py	/^class AvatarImageModel(CommonResourceModel):$/;"	c	inherits:CommonResourceModel
+BASE_DIR	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))$/;"	v
+CUSTOM_USER_MODEL	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^CUSTOM_USER_MODEL = 'UserProfile.UserModel'$/;"	v
+CardModel	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^class CardModel(models.Model):$/;"	c	inherits:models.Model
+CardResourceUpload	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^class CardResourceUpload(object):$/;"	c	inherits:object
+CommonResourceModel	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\resources.py	/^class CommonResourceModel(models.Model):$/;"	c	inherits:models.Model
+DATABASES	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^DATABASES = {$/;"	v
+DEBUG	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^DEBUG = True$/;"	v
+DaliyNewsModel	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\daliynews.py	/^class DaliyNewsModel(models.Model):$/;"	c	inherits:models.Model
+DaliyNewsStyleModel	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\daliynews.py	/^class DaliyNewsStyleModel(models.Model):$/;"	c	inherits:models.Model
+DaliyNewsUpload	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^class DaliyNewsUpload(object):$/;"	c	inherits:object
+FileWrapper	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^from wsgiref.util import FileWrapper$/;"	i
+FileWrapper	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^from wsgiref.util import FileWrapper$/;"	i
+HttpResponse	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^from django.http import HttpResponse$/;"	i
+INSTALLED_APPS	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^INSTALLED_APPS = [$/;"	v
+Image	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\script\0f56a987be0f020692598a9578cc2578.py	/^import Image$/;"	i
+Image	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\script\33e07ef8a9ae3a6c4e17b16868049acb.py	/^import Image$/;"	i
+Image	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\script\686ddea137a1c452f55d8ec1f251631c.py	/^import Image$/;"	i
+Image	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\script\a2c11953efd53ca92cd3e95702a8dda8.py	/^import Image$/;"	i
+Image	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^from PIL import Image$/;"	i
+IntegrityError	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^from django.db import IntegrityError$/;"	i
+LANGUAGE_CODE	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^LANGUAGE_CODE = 'en-us'$/;"	v
+MIDDLEWARE_CLASSES	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^MIDDLEWARE_CLASSES = [$/;"	v
+Meta	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    class Meta:$/;"	c	class:UserModel	inherits:
+Meta	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    class Meta:$/;"	c	class:CardModel	inherits:
+Meta	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    class Meta:$/;"	c	class:TemplateModel	inherits:
+Meta	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^    class Meta:$/;"	c	class:SiteConfigCategoryModel	inherits:
+Meta	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^    class Meta:$/;"	c	class:SiteConfigModel	inherits:
+Meta	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^    class Meta:$/;"	c	class:SiteLevelConfigModel	inherits:
+Meta	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\daliynews.py	/^    class Meta:$/;"	c	class:DaliyNewsModel	inherits:
+Meta	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\daliynews.py	/^    class Meta:$/;"	c	class:DaliyNewsStyleModel	inherits:
+Meta	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    class Meta:$/;"	c	class:QRCodeModel	inherits:
+Meta	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    class Meta:$/;"	c	class:QRStyleModel	inherits:
+Meta	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\resources.py	/^    class Meta:$/;"	c	class:AvatarImageModel	inherits:
+Meta	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\resources.py	/^    class Meta:$/;"	c	class:CommonResourceModel	inherits:
+QRArriseDownload	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^class QRArriseDownload(object):$/;"	c	inherits:object
+QRArriseDownloadForm	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^class QRArriseDownloadForm(forms.Form):$/;"	c	inherits:forms.Form
+QRCodeModel	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^class QRCodeModel(models.Model):$/;"	c	inherits:models.Model
+QRStyleModel	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^class QRStyleModel(models.Model):$/;"	c	inherits:models.Model
+QRStyleUpload	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^class QRStyleUpload(object):$/;"	c	inherits:object
+QrGiftConfig	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\apps.py	/^class QrGiftConfig(AppConfig):$/;"	c	inherits:AppConfig
+ROOT_URLCONF	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^ROOT_URLCONF = 'qr_gift_pro.urls'$/;"	v
+RedirectView	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\urls.py	/^from django.views.generic.base import RedirectView$/;"	i
+SECRET_KEY	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^SECRET_KEY = 'w6f)yd9@_hj$x*23f-%h9dt4a2odwu8alk$qso@nox*$bzn79-'$/;"	v
+STATICFILES_FINDERS	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^STATICFILES_FINDERS = ($/;"	v
+STATIC_ROOT	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^STATIC_ROOT = os.path.join(BASE_DIR, 'collected_static')$/;"	v
+STATIC_URL	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^STATIC_URL = '\/static\/'$/;"	v
+SiteConfigCategoryModel	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^class SiteConfigCategoryModel(models.Model):$/;"	c	inherits:models.Model
+SiteConfigModel	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^class SiteConfigModel(models.Model):$/;"	c	inherits:models.Model
+SiteLevelConfigModel	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^class SiteLevelConfigModel(models.Model):$/;"	c	inherits:models.Model
+StringIO	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^import StringIO$/;"	i
+TEMPLATES	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^TEMPLATES = [$/;"	v
+TIME_ZONE	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^TIME_ZONE = 'UTC'$/;"	v
+TemplateModel	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^class TemplateModel(models.Model):$/;"	c	inherits:models.Model
+TestCase	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\tests.py	/^from django.test import TestCase$/;"	i
+USE_I18N	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^USE_I18N = True$/;"	v
+USE_L10N	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^USE_L10N = True$/;"	v
+USE_TZ	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^USE_TZ = False$/;"	v
+UploadForm	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^    class UploadForm(forms.Form):$/;"	c	class:CardResourceUpload	inherits:forms.Form
+UploadForm	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^    class UploadForm(forms.Form):$/;"	c	class:DaliyNewsUpload	inherits:forms.Form
+UploadForm	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^    class UploadForm(forms.Form):$/;"	c	class:QRStyleUpload	inherits:forms.Form
+UploadForm	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^    class UploadForm(forms.Form):$/;"	c	class:UserAvatarUpload	inherits:forms.Form
+User	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^from django.contrib.auth.models import User, UserManager$/;"	i
+User	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\signals.py	/^from django.contrib.auth.models import User$/;"	i
+UserAvatarUpload	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^class UserAvatarUpload(object):$/;"	c	inherits:object
+UserManager	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^from django.contrib.auth.models import User, UserManager$/;"	i
+UserModel	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^class UserModel(User):$/;"	c	inherits:User
+WSGI_APPLICATION	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^WSGI_APPLICATION = 'qr_gift_pro.wsgi.application'$/;"	v
+__init__	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:QRArriseDownloadForm	access:public
+__init__	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^    def __init__(self,request):$/;"	m	class:QRArriseDownload	access:public
+__init__	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^    def __init__(self,request,ret):$/;"	m	class:CardResourceUpload	access:public
+__init__	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^    def __init__(self,request,ret):$/;"	m	class:DaliyNewsUpload	access:public
+__init__	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^    def __init__(self,request,ret):$/;"	m	class:QRStyleUpload	access:public
+__init__	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^    def __init__(self,request,ret):$/;"	m	class:UserAvatarUpload	access:public
+__unicode__	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    def __unicode__(self):$/;"	m	class:UserModel	file:	access:private
+__unicode__	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\daliynews.py	/^    def __unicode__(self):$/;"	m	class:DaliyNewsStyleModel	file:	access:private
+__unicode__	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    def __unicode__(self):$/;"	m	class:QRCodeModel	file:	access:private
+__unicode__	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    def __unicode__(self):$/;"	m	class:QRStyleModel	file:	access:private
+admin	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\admin.py	/^from django.contrib import admin$/;"	i
+admin	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\urls.py	/^from django.contrib import admin$/;"	i
+api	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def api(request):$/;"	f	access:public
+app_label	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^        app_label='qr_gift'$/;"	v	class:UserModel.Meta
+app_label	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^        app_label = 'qr_gift'$/;"	v	class:CardModel.Meta
+app_label	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^        app_label = 'qr_gift'$/;"	v	class:TemplateModel.Meta
+app_label	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^        app_label = 'qr_gift'$/;"	v	class:SiteConfigCategoryModel.Meta
+app_label	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^        app_label = 'qr_gift'$/;"	v	class:SiteConfigModel.Meta
+app_label	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^        app_label = 'qr_gift'$/;"	v	class:SiteLevelConfigModel.Meta
+app_label	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\daliynews.py	/^        app_label = 'qr_gift'$/;"	v	class:DaliyNewsModel.Meta
+app_label	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\daliynews.py	/^        app_label = 'qr_gift'$/;"	v	class:DaliyNewsStyleModel.Meta
+app_label	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^        app_label = 'qr_gift'$/;"	v	class:QRCodeModel.Meta
+app_label	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^        app_label = 'qr_gift'$/;"	v	class:QRStyleModel.Meta
+app_label	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\resources.py	/^        app_label = 'qr_gift'$/;"	v	class:AvatarImageModel.Meta
+app_label	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\resources.py	/^        app_label = 'qr_gift'$/;"	v	class:CommonResourceModel.Meta
+application	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\wsgi.py	/^application = get_wsgi_application()$/;"	v
+area	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    area=models.CharField(max_length=32,default="")$/;"	v	class:UserModel
+auth	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^from django.contrib import auth$/;"	i
+author	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    author=models.ForeignKey(UserModel,related_name='author_usermodel')$/;"	v	class:CardModel
+avatar	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    avatar=models.ForeignKey(CommonResourceModel,null=True)$/;"	v	class:UserModel
+avatar	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^        avatar=forms.ImageField(required=True)$/;"	v	class:UserAvatarUpload.UploadForm
+banned	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    banned=models.BooleanField(default=False)$/;"	v	class:CardModel
+be_subscribe_count	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    be_subscribe_count=models.IntegerField(default=0)$/;"	v	class:UserModel
+birthday	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    birthday=models.CharField(max_length=16,default="")$/;"	v	class:UserModel
+card_count	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    card_count=models.IntegerField(default=0)$/;"	v	class:UserModel
+card_create	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def card_create(request,post_data,ret):$/;"	f	access:public
+card_edit	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def card_edit(request,post_data,ret):$/;"	f	access:public
+card_query	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def card_query(request,post_data,ret):$/;"	f	access:public
+card_res	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^        card_res=forms.FileField(required=True)$/;"	v	class:CardResourceUpload.UploadForm
+card_token	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    card_token=models.OneToOneField(CardModel,null=True)$/;"	v	class:QRCodeModel
+category	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^    category=models.FloatField(SiteConfigCategoryModel)$/;"	v	class:SiteConfigModel
+channel	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    channel=models.IntegerField()$/;"	v	class:QRCodeModel
+choice	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^        choice=[]$/;"	v	class:DaliyNewsUpload.UploadForm
+city	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    city=models.CharField(max_length=32,default="")$/;"	v	class:UserModel
+common_download	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def common_download(request,action):$/;"	f	access:public
+common_upload	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def common_upload(request,action):$/;"	f	access:public
+create_at	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    create_at=models.DateTimeField(auto_now_add=True)$/;"	v	class:TemplateModel
+create_at	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^    create_at=models.DateTimeField(auto_now_add=True)$/;"	v	class:SiteConfigCategoryModel
+create_user_detail	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\signals.py	/^def create_user_detail(sender, instance, signal, *args, **kwargs):$/;"	f	access:public
+created_at	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    created_at=models.DateTimeField(auto_now_add=True)$/;"	v	class:CardModel
+created_at	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    created_at=models.DateTimeField(auto_now_add=True)$/;"	v	class:QRCodeModel
+created_at	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    created_at=models.DateTimeField(auto_now_add=True)$/;"	v	class:QRStyleModel
+date_str	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\daliynews.py	/^    date_str=models.CharField(max_length=16)$/;"	v	class:DaliyNewsModel
+datetime	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^import datetime$/;"	i
+datetime	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^import datetime$/;"	i
+datetime	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\testRequest.py	/^import datetime$/;"	i
+description	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^    description=models.TextField()$/;"	v	class:SiteConfigCategoryModel
+description	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^    description=models.TextField()$/;"	v	class:SiteConfigModel
+detailed_info	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    detailed_info=models.TextField(default="")$/;"	v	class:UserModel
+django	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^import django.utils.timezone as timezone$/;"	i
+download	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^    def download(self,uf):$/;"	m	class:QRArriseDownload	access:public
+edited_count	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    edited_count=models.IntegerField(default=0)$/;"	v	class:CardModel
+enabled	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    enabled=models.BooleanField()$/;"	v	class:TemplateModel
+execute_from_command_line	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\manage.py	/^    from django.core.management import execute_from_command_line$/;"	i
+exp	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    exp=models.IntegerField(default=0);$/;"	v	class:UserModel
+fid	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^        fid = forms.ChoiceField(choices=choice)$/;"	v	class:DaliyNewsUpload.UploadForm
+file2sha256	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def file2sha256(filename):$/;"	f	access:public
+first_read_at	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    first_read_at=models.DateTimeField(null=True)$/;"	v	class:CardModel
+forms	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^from django import forms$/;"	i
+fstring	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^        fstring=forms.CharField()$/;"	v	class:DaliyNewsUpload.UploadForm
+gender	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    gender=models.IntegerField(default=1)$/;"	v	class:UserModel
+getChoice	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    def getChoice():$/;"	m	class:QRStyleModel	access:public
+get_file_md5	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def get_file_md5(filename):$/;"	f	access:public
+get_wsgi_application	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\wsgi.py	/^from django.core.wsgi import get_wsgi_application$/;"	i
+handle_uploaded_file	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def handle_uploaded_file(file,md5_str,path):$/;"	f	access:public
+has_audio_area	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    has_audio_area=models.BooleanField()$/;"	v	class:TemplateModel
+has_image_area	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    has_image_area=models.BooleanField()$/;"	v	class:TemplateModel
+has_text_area	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    has_text_area=models.BooleanField()$/;"	v	class:TemplateModel
+has_video_area	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    has_video_area=models.BooleanField()$/;"	v	class:TemplateModel
+hashlib	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^import hashlib$/;"	i
+id	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    id=models.IntegerField(primary_key=True,editable=False)$/;"	v	class:TemplateModel
+id	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^    id=models.IntegerField(primary_key=True,editable=False)$/;"	v	class:SiteConfigCategoryModel
+id	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^    id=models.IntegerField(primary_key=True,editable=False)$/;"	v	class:SiteConfigModel
+id	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^    id=models.IntegerField(primary_key=True,editable=False)$/;"	v	class:SiteLevelConfigModel
+id	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    id=models.AutoField(primary_key=True,editable=False)$/;"	v	class:QRCodeModel
+id	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    id=models.AutoField(primary_key=True,editable=False)$/;"	v	class:QRStyleModel
+id	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\resources.py	/^    id=models.AutoField(primary_key=True,editable=False)$/;"	v	class:CommonResourceModel
+id_md5	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\resources.py	/^    id_md5=models.CharField(max_length=32,default="")$/;"	v	class:CommonResourceModel
+image	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\daliynews.py	/^    image=models.ForeignKey(CommonResourceModel,related_name='image_res')$/;"	v	class:DaliyNewsModel
+img_res	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^        img_res=forms.FileField(required=True)$/;"	v	class:DaliyNewsUpload.UploadForm
+is_editable	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    is_editable=models.BooleanField()$/;"	v	class:CardModel
+is_public	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    is_public=models.BooleanField()$/;"	v	class:CardModel
+is_recorded	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    is_recorded=models.BooleanField(default=False)$/;"	v	class:QRCodeModel
+jn	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^from os.path import join as jn$/;"	i
+json	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^import json$/;"	i
+json	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^import json$/;"	i
+json	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\testRequest.py	/^import json$/;"	i
+key	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^    key=models.CharField(max_length=256,unique=True)$/;"	v	class:SiteConfigModel
+kind	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\resources.py	/^    kind=models.CharField(max_length=4,default="")$/;"	v	class:CommonResourceModel
+level	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    level=models.ForeignKey(SiteLevelConfigModel,null=True)$/;"	v	class:UserModel
+level	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^    level=models.IntegerField(unique=True,default=1)$/;"	v	class:SiteLevelConfigModel
+local_template	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    local_template=models.TextField(null=True)$/;"	v	class:CardModel
+login	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def login(request,post_data,ret):$/;"	f	access:public
+logout	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def logout(request,post_data,ret):$/;"	f	access:public
+max_exp	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^    max_exp=models.IntegerField()$/;"	v	class:SiteLevelConfigModel
+max_image_length	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    max_image_length=models.IntegerField()$/;"	v	class:TemplateModel
+max_text_length	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    max_text_length=models.IntegerField()$/;"	v	class:TemplateModel
+min_exp	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^    min_exp=models.IntegerField()$/;"	v	class:SiteLevelConfigModel
+mobile	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    mobile=models.CharField(max_length=16,default="")$/;"	v	class:UserModel
+models	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^from django.db import models$/;"	i
+models	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^from django.db import models$/;"	i
+models	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^from django.db import models$/;"	i
+models	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\daliynews.py	/^from django.db import models$/;"	i
+models	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^from django.db import models$/;"	i
+models	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\resources.py	/^from django.db import models$/;"	i
+modified_at	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    modified_at=models.DateTimeField(auto_now=True)$/;"	v	class:UserModel
+modified_at	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    modified_at=models.DateTimeField(auto_now=True)$/;"	v	class:CardModel
+modified_at	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^    modified_at=models.DateTimeField(auto_now=True)$/;"	v	class:SiteConfigModel
+name	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\apps.py	/^    name = 'qr_gift'$/;"	v	class:QrGiftConfig
+name	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^    name=models.CharField(max_length=256,unique=True)$/;"	v	class:SiteConfigCategoryModel
+name	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^    name=models.CharField(max_length=256,unique=True)$/;"	v	class:SiteLevelConfigModel
+name	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    name=models.CharField(max_length=256,unique=True)$/;"	v	class:QRStyleModel
+name	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^        name = forms.CharField(required=True)$/;"	v	class:QRStyleUpload.UploadForm
+nick	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    nick=models.CharField(max_length=256,default=u"路人甲")$/;"	v	class:UserModel
+objects	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    objects = UserManager()$/;"	v	class:UserModel
+os	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\manage.py	/^import os$/;"	i
+os	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^import os, tempfile, zipfile$/;"	i
+os	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^import os$/;"	i
+os	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\settings.py	/^import os$/;"	i
+os	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\wsgi.py	/^import os$/;"	i
+password_change	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def password_change():$/;"	f	access:public
+post_save	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^from django.db.models.signals import post_save$/;"	i
+post_save	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\signals.py	/^from django.db.models.signals import post_save$/;"	i
+preview	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    preview=models.ForeignKey(CommonResourceModel,related_name='pre_res')$/;"	v	class:TemplateModel
+preview	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    preview=models.OneToOneField(CommonResourceModel,related_name='preview_res',null=True)$/;"	v	class:QRStyleModel
+province	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    province=models.CharField(max_length=32,default="")$/;"	v	class:UserModel
+qr_arrise	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def qr_arrise(request):$/;"	f	access:public
+qr_gift_views	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\urls.py	/^from qr_gift import views as qr_gift_views$/;"	i
+qr_query	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def qr_query(request,post_data,ret):$/;"	f	access:public
+qr_style_upload	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def qr_style_upload(request):$/;"	f	access:public
+re	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^import re$/;"	i
+read_by	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    read_by=models.ForeignKey(UserModel,related_name='read_by_usermodel',null=True)$/;"	v	class:CardModel
+recorded_at	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    recorded_at=models.DateTimeField(null=True)$/;"	v	class:QRCodeModel
+register	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def register(request,post_data,ret):$/;"	f	access:public
+registered_at	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    registered_at=models.DateTimeField(auto_now_add=True)$/;"	v	class:UserModel
+render	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^from django.shortcuts import render$/;"	i
+render_to_response	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^from django.shortcuts import render_to_response$/;"	i
+requests	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\testRequest.py	/^import requests$/;"	i
+res_query	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def res_query(request,post_data,ret):$/;"	f	access:public
+scan_count	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    scan_count=models.IntegerField(default=0)$/;"	v	class:QRCodeModel
+script	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\script\0f56a987be0f020692598a9578cc2578.py	/^def script(image_name,border_name,name):$/;"	f	access:public
+script	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\script\33e07ef8a9ae3a6c4e17b16868049acb.py	/^def script(image_name,border_name,name):$/;"	f	access:public
+script	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\script\686ddea137a1c452f55d8ec1f251631c.py	/^def script(image_name,border_name,name):$/;"	f	access:public
+script	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\script\a2c11953efd53ca92cd3e95702a8dda8.py	/^def script(image_name,border_name,name):$/;"	f	access:public
+sha_256	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\resources.py	/^    sha_256=models.CharField(max_length=64,default="")$/;"	v	class:CommonResourceModel
+size	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\resources.py	/^    size=models.IntegerField()$/;"	v	class:AvatarImageModel
+stars	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    stars=models.IntegerField(default=0)$/;"	v	class:CardModel
+string	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\daliynews.py	/^    string=models.CharField(max_length=1024)$/;"	v	class:DaliyNewsModel
+style	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\daliynews.py	/^    style=models.ForeignKey(DaliyNewsStyleModel)$/;"	v	class:DaliyNewsModel
+style	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    style=models.ForeignKey(QRStyleModel)$/;"	v	class:QRCodeModel
+style_binary	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    style_binary=models.ForeignKey(CommonResourceModel,related_name='style_res')$/;"	v	class:TemplateModel
+style_border_binary	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    style_border_binary=models.OneToOneField(CommonResourceModel,related_name='style_border_res',null=True)$/;"	v	class:QRStyleModel
+style_border_binary	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^        style_border_binary=forms.FileField(required=False)$/;"	v	class:QRStyleUpload.UploadForm
+style_center_binary	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    style_center_binary=models.OneToOneField(CommonResourceModel,related_name='style_center_res',null=True)$/;"	v	class:QRStyleModel
+style_center_binary	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^        style_center_binary=forms.FileField(required=False)$/;"	v	class:QRStyleUpload.UploadForm
+style_name	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\daliynews.py	/^    style_name=models.CharField(max_length=16)$/;"	v	class:DaliyNewsStyleModel
+style_script	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    style_script=models.OneToOneField(CommonResourceModel,related_name='style_script_res',null=True)$/;"	v	class:QRStyleModel
+style_script	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^        style_script=forms.FileField(required=True)$/;"	v	class:QRStyleUpload.UploadForm
+styles	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^        styles=DaliyNewsStyleModel.objects.all()$/;"	v	class:DaliyNewsUpload.UploadForm
+subscribe_count	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    subscribe_count=models.IntegerField(default=0)$/;"	v	class:UserModel
+sys	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\manage.py	/^import sys$/;"	i
+sys	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\script\0f56a987be0f020692598a9578cc2578.py	/^import sys$/;"	i
+sys	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\script\33e07ef8a9ae3a6c4e17b16868049acb.py	/^import sys$/;"	i
+sys	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\script\686ddea137a1c452f55d8ec1f251631c.py	/^import sys$/;"	i
+sys	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\script\a2c11953efd53ca92cd3e95702a8dda8.py	/^import sys$/;"	i
+sys	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\testRequest.py	/^import sys$/;"	i
+tempfile	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^import os, tempfile, zipfile$/;"	i
+template	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    template=models.ForeignKey(TemplateModel,null=True)$/;"	v	class:CardModel
+testRequest	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\testRequest.py	/^def testRequest():$/;"	f	access:public
+time	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^import time$/;"	i
+time	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^import time$/;"	i
+time	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^import time$/;"	i
+time	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\testRequest.py	/^import time$/;"	i
+timezone	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^import django.utils.timezone as timezone$/;"	i
+toDict	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^    def toDict(self):$/;"	m	class:UserModel	access:public
+toDict	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    def toDict(self):$/;"	m	class:CardModel	access:public
+toDict	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\daliynews.py	/^    def toDict(self):$/;"	m	class:DaliyNewsModel	access:public
+toDict	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    def toDict(self):$/;"	m	class:QRCodeModel	access:public
+toDict	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\resources.py	/^    def toDict(self):$/;"	m	class:CommonResourceModel	access:public
+token	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    token=models.CharField(max_length=32,unique=True)$/;"	v	class:CardModel
+unicode_literals	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\apps.py	/^from __future__ import unicode_literals$/;"	i
+unicode_literals	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^from __future__ import unicode_literals$/;"	i
+unicode_literals	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^from __future__ import unicode_literals$/;"	i
+unicode_literals	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^from __future__ import unicode_literals$/;"	i
+unicode_literals	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\daliynews.py	/^from __future__ import unicode_literals$/;"	i
+unicode_literals	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^from __future__ import unicode_literals$/;"	i
+unicode_literals	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\resources.py	/^from __future__ import unicode_literals$/;"	i
+unique_id	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^    unique_id=models.CharField(max_length=32,unique=True)$/;"	v	class:QRCodeModel
+upload	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^    def upload(self,uf):$/;"	m	class:CardResourceUpload	access:public
+upload	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^    def upload(self,uf):$/;"	m	class:DaliyNewsUpload	access:public
+upload	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^    def upload(self,uf):$/;"	m	class:QRStyleUpload	access:public
+upload	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^    def upload(self,uf):$/;"	m	class:UserAvatarUpload	access:public
+uploaded_at	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\resources.py	/^    uploaded_at=models.DateTimeField(auto_now_add=True)$/;"	v	class:CommonResourceModel
+url	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\urls.py	/^from django.conf.urls import url$/;"	i
+urlpatterns	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift_pro\urls.py	/^urlpatterns = [$/;"	v
+user_edit_profile	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def user_edit_profile(request,post_data,ret):$/;"	f	access:public
+user_info	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^def user_info(request,post_data,ret):$/;"	f	access:public
+utils	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py	/^import django.utils.timezone as timezone$/;"	i
+value	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\config.py	/^    value=models.CharField(max_length=256);$/;"	v	class:SiteConfigModel
+video	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\daliynews.py	/^    video=models.ForeignKey(CommonResourceModel,related_name='video_res',null=True)$/;"	v	class:DaliyNewsModel
+video_res	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^        video_res=forms.FileField(required=False)$/;"	v	class:DaliyNewsUpload.UploadForm
+view_count	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    view_count=models.IntegerField(default=0)$/;"	v	class:CardModel
+visible_at	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\card.py	/^    visible_at=models.DateTimeField()$/;"	v	class:CardModel
+voice	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\daliynews.py	/^    voice=models.ForeignKey(CommonResourceModel,related_name='voice_res',null=True)$/;"	v	class:DaliyNewsModel
+voice_res	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^        voice_res=forms.FileField(required=False)$/;"	v	class:DaliyNewsUpload.UploadForm
+zipfile	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py	/^import os, tempfile, zipfile$/;"	i
+zipfile	D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py	/^import zipfile$/;"	i
