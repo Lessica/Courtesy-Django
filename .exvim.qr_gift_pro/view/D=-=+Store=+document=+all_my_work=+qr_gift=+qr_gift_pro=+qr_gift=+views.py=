@@ -13,12 +13,8 @@ inoremap <buffer> <silent> " =AutoPairsInsert('"')
 inoremap <buffer> <silent> ' =AutoPairsInsert('''')
 inoremap <buffer> <silent> ( =AutoPairsInsert('(')
 inoremap <buffer> <silent> ) =AutoPairsInsert(')')
-nnoremap <buffer> <silent> î :call AutoPairsJump()
-xnoremap <buffer> <silent> î :call AutoPairsJump()
-onoremap <buffer> <silent> î :call AutoPairsJump()
-nnoremap <buffer> <silent> ð :call AutoPairsToggle()
-xnoremap <buffer> <silent> ð :call AutoPairsToggle()
-onoremap <buffer> <silent> ð :call AutoPairsToggle()
+noremap <buffer> <silent> î :call AutoPairsJump()
+noremap <buffer> <silent> ð :call AutoPairsToggle()
 inoremap <buffer> <silent> [ =AutoPairsInsert('[')
 inoremap <buffer> <silent> ] =AutoPairsInsert(']')
 inoremap <buffer> <silent> ` =AutoPairsInsert('`')
@@ -131,26 +127,22 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-370
+429
 normal! zo
-374
+434
 normal! zo
-375
+571
 normal! zo
-380
+577
 normal! zo
-391
+583
 normal! zo
-401
-normal! zo
-407
-normal! zo
-let s:l = 392 - ((9 * winheight(0) + 26) / 52)
+let s:l = 434 - ((65 * winheight(0) + 18) / 37)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-392
-normal! 071|
+434
+normal! 018|
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

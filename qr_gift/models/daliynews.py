@@ -29,12 +29,12 @@ class DaliyNewsModel(models.Model):
     class Meta:
         app_label = 'qr_gift'
 
-    image=models.ForeignKey(CommonResourceModel,related_name='image_res')
+    image=models.ForeignKey(CommonResourceModel,related_name='image_res',null=True)
     video=models.ForeignKey(CommonResourceModel,related_name='video_res',null=True)
     voice=models.ForeignKey(CommonResourceModel,related_name='voice_res',null=True)
     date_str=models.CharField(max_length=16)
-    string=models.TextField()
-    style=models.ForeignKey(DaliyNewsStyleModel)
+    string=models.TextField(null=True)
+    style=models.ForeignKey(DaliyNewsStyleModel,null=True)
     def __unicode__(self):
         return self.date_str
 
