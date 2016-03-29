@@ -371,24 +371,28 @@ class DaliyNewsUpload(object):
         self.request=request
         self.ret=ret
     class UploadForm(forms.Form):
-        img_res=forms.FileField(required=True)
-        voice_res=forms.FileField(required=False)
-        video_res=forms.FileField(required=False)
-        fdate=forms.CharField()
-        fstring=forms.CharField(widget=forms.Textarea)
+        def __init__(self, *args, **kwargs):
+            super(type( self ),self).__init__(*args, **kwargs)
 
-        choice=[]
-        styles=DaliyNewsStyleModel.objects.all()
-        for style in styles:
-            choice.append( (style.id,style.style_name) )
-        fid = forms.ChoiceField(choices=choice)
+            choice=[]
+            styles=DaliyNewsStyleModel.objects.all()
+            for style in styles:
+                choice.append( (style.id,style.style_name) )
+
+            self.fields["image_res"]=forms.FileField(required=True)
+            self.fields["voice_res"]=forms.FileField(required=False)
+            self.fields["video_res"]=forms.FileField(required=False)
+            #  self.fields["fdate"]=forms.CharField()
+            self.fields["fdate"]=forms.DateField(initial=datetime.date.today,widget=forms.SelectDateWidget(years=[y for y in range(2000,2050)]))
+            self.fields["fstring"]=forms.CharField(widget=forms.Textarea)
+            self.fields["fid"] = forms.ChoiceField(choices=choice)
 
     def upload(self,uf):
-        model=DaliyNewsModel()
+        date_str=uf.cleaned_data['fdate']
+        model=DaliyNewsModel.objects.get_or_create(date_str=date_str)[0]
         model.string=uf.cleaned_data['fstring']
-        model.date_str=uf.cleaned_data['fdate']
 
-        file_id,file_path,kind=handle_uploaded_file(self.request.FILES['img_res'],str(time.time()),jn("news","image"))
+        file_id,file_path,kind=handle_uploaded_file(self.request.FILES['image_res'],str(time.time()),jn("news","image"))
         res1=CommonResourceModel(id_md5=file_id,kind=kind)
         res1.save()
         model.image=res1
