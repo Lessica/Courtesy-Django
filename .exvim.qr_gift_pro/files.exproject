@@ -15,7 +15,10 @@
  | |-__init__.py
  | |-admin.py
  | |-apps.py
+ | |-news.py
+ | |-qrcode.py
  | |-tests.py
+ | |-user.py
  | |-views.py }
  |
  |-[F]qr_gift_pro {

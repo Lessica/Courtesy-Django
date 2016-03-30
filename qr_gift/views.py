@@ -2,14 +2,12 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.db import IntegrityError
 from django.shortcuts import render_to_response
-from django.contrib import auth
 from django import forms
 from django.core.exceptions import *
 
 from .models import *
 import re
 import json
-import hashlib
 from wsgiref.util import FileWrapper
 from os.path import join as jn
 import zipfile
@@ -19,238 +17,22 @@ from PIL import Image
 import datetime
 import os
 
+import news
+import user
+import qrcode
+
 #######################################################
 ################## USER PART #######################
 #######################################################
 
-def login(request,post_data,ret):
-    #TODO:is logined
-    #  if request.user.is_authenticated():
-        #  ret['error']=408
-        #  return ret
-    try:
-        req = post_data["account"]
-
-        user = auth.authenticate(username=req['email'], password=req['pwd'])
-        if user is None:
-            ret['error']=406
-        if ret['error']==0 and not user.is_active:
-            ret['error']=407
-        else:
-            auth.login(request, user)
-        #  um=UserModel.objects.get(user_ptr_id=request.user.id)
-        #  um.last_login=timezone.now
-        #  um.save()
-
-    except KeyError as e:
-        ret['error']=401
-        ret["field"]=str(e)[1:-1]
-    except AttributeError as e:
-        if ret['error']!=406:
-            ret['error']=406
-            ret["field"]=str(e)[1:-1]
-        #  ret['user_model']=UserModel.objects.get(user_ptr_id=user.id).toDict()
-    #  return ret
-    return ret
-
-def register(request,post_data,ret):
-    req=post_data["account"]
-    try:
-        user = UserModel.objects.create_user(
-                                         username=req['email'],
-                                         email=req['email'],
-                                         )
-        user.set_password(req['pwd'])
-        user.nick=req["email"].split("@")[0]
-        user.save()
-
-        user = auth.authenticate(username=req['email'], password=req['pwd'])
-        auth.login(request, user)
-    except IntegrityError as e:
-        ret['error']=405
-        ret['field']=str(e).replace("username","email").split(" ")[1]
-    #  except Exception:
-        #  ret['error']=404
-
-
-    return ret
-
-def logout(request,post_data,ret):
-    if not request.user.is_authenticated():
-        ret["error"]=403
-    else:
-        try:
-            auth.logout(request)
-        except Exception:
-            ret['error']=404
-
-    return ret
-
-def user_info(request,post_data,ret):
-    if not request.user.is_authenticated():
-        ret["error"]=403
-        return ret
-    if post_data.has_key("user_id"):
-        user=UserModel.objects.get(user_ptr_id=post_data["user_id"])
-    elif post_data.has_key("user_email"):
-        user=UserModel.objects.get(email=post_data["user_email"])
-    else:
-        user=UserModel.objects.get(user_ptr_id=request.user.id)
-    ret["account_info"]=user.toDict()
-    ret["account_info"]["has_profile"] = True;
-    return ret
-
-def user_edit_profile(request,post_data,ret):
-    try:
-        if not request.user.is_authenticated():
-            ret["error"]=403
-        else:
-            profile=post_data["profile"]
-            user_model=UserModel.objects.get(user_ptr_id=request.user.id)
-            user_model.nick=profile["nick"]
-            #TODO:
-            #  user_model.avatar=profile["avatar"]
-            user_model.mobile=profile["mobile"]
-            user_model.birthday=profile["birthday"]
-            user_model.gender=profile["gender"]
-            user_model.detailed_info=profile["introduction"]
-            user_model.province=profile["province"]
-            user_model.city=profile["city"]
-            user_model.area=profile["area"]
-            #  user_model.constellation=profile["constellation"]
-            user_model.save()
-
-    except KeyError as e:
-        ret['error']=401
-        ret["field"]=str(e)[1:-1]
-
-    return ret
 
 """
 QR_CODE PART
 """
-def qr_query(request,post_data,ret):
-    qr_id=post_data["qr_id"]
-    try:
-        qr_model=QRCodeModel.objects.get(unique_id=qr_id)
-    except ( ValueError,ObjectDoesNotExist ):
-        ret["error"]=423
-        return ret
-    ret["qr_info"]=qr_model.toDict()
-    qr_model.scan_count=qr_model.scan_count+1
-    #  if qr_model.is_recorded==True:
-        #  card=qr_model.card_token
-        #  ret["card_info"]=card.toDict()
-        #  if not request.user.is_authenticated():
-            #  card.view_count=card.view_count+1
-            #  if not card.first_read_at:
-                #  card.read_by_id=request.user.id
-            #  card.save()
-
-        #  elif request.user.id!=card.author_id:
-            #  card.view_count=card.view_count+1
-            #  if not card.first_read_at:
-                #  card.read_by_id=request.user.id
-                #  card.first_read_at=datetime.datetime.now()
-
-            #  card.save()
-    qr_model.save()
-
-    return ret
-
-def card_query(request,post_data,ret):
-    try:
-        card=CardModel.objects.get(token=post_data["token"])
-    except ( ValueError,ObjectDoesNotExist ):
-        ret["error"]=404
-        return ret
-    except KeyError:
-        ret["error"]=401
-        return ret
-    ##TODO
-    if card.banned:
-        ret["error"]=425
-        return ret
-
-    if not request.user.is_authenticated():
-        card.view_count=card.view_count+1
-        if not card.first_read_at:
-            card.first_read_at=datetime.datetime.now()
-        card.save()
-
-    elif request.user.id!=card.author_id:
-        card.view_count=card.view_count+1
-        if not card.first_read_at:
-            card.read_by_id=request.user.id
-            card.first_read_at=datetime.datetime.now()
-        card.save()
-    ret["card_info"]=card.toDict()
-
-    if card.visible_at>datetime.datetime.now():
-        ret["card_info"]["local_template"]=None
-    return ret
-def card_edit(request,post_data,ret):
-    if not request.user.is_authenticated():
-        ret["error"]=403
-        return ret
-    card_info=post_data["card_info"]
-    try:
-        card=CardModel.objects.get(token=post_data["token"])
-    except ( ValueError,ObjectDoesNotExist ):
-        ret["error"]=404
-        return ret
-    ##TODO
-    #  card.author=UserModel.objects.get(user_ptr_id=request.user.id)
-    if request.user.id!=card.author_id:
-        ret["error"]=425
-        return ret
-    if card.banned:
-        ret["error"]=425
-        return ret
-    card.local_template=card_info["local_template"]
-    card.is_public=card_info["is_public"]
-    card.is_editable=card_info["is_editable"]
-    card.visible_at=datetime.datetime.fromtimestamp(card_info["visible_at"])
-    card.edited_count=card.edited_count+1
-    card.save()
-    ret["card_info"]=card.toDict()
-    return ret
-
-def card_create(request,post_data,ret):
-    if not request.user.is_authenticated():
-        ret["error"]=403
-        return ret
-    card_info=post_data["card_info"]
-    qr_code=QRCodeModel.objects.get(unique_id=post_data["qr_id"])
-    if qr_code.is_recorded:
-        ret["error"]=424
-        return ret
-
-    new_card=CardModel()
-    new_card.author=UserModel.objects.get(user_ptr_id=request.user.id)
-    new_card.local_template=card_info["local_template"]
-    new_card.is_public=card_info["is_public"]
-    new_card.is_editable=card_info["is_editable"]
-    new_card.token=hashlib.md5(post_data["qr_id"]).hexdigest()
-    new_card.visible_at=datetime.datetime.fromtimestamp(card_info["visible_at"])
-    new_card.save()
-
-    qr_code.is_recorded=True
-    qr_code.recorded_at=str(datetime.datetime.now())
-    qr_code.card_token=new_card
-    qr_code.save()
-    ret["card_info"]=new_card.toDict()
-    return ret
-
 """
     news
 """
 
-def news_query(request,post_data,ret):
-    date_str=post_data["s_date"]
-    md_news=DaliyNewsModel.objects.get(date_str=date_str)
-    ret["news"]=md_news.toDict()
-    return ret
 
 
 #######################################################
@@ -454,17 +236,6 @@ def common_upload(request,action):
         uf = common_upload_form()
         return render_to_response('common_upload.html',{'uf':uf})
 
-# TODO:
-def password_change():
-    res={'error':-1}
-    if (request.method=='POST'):
-        res['error']=0
-        if not request.user.is_authenticated():
-            res['error']=0
-        else:
-            request.user.set_password()
-
-    return HttpResponse(json.dumps(res), content_type="application/json")
 
 
 class QRArriseDownloadForm(forms.Form):
@@ -554,18 +325,6 @@ def common_download(request,action):
         uf = common_download_form()
         return render_to_response('common_upload.html',{'uf':uf})
 
-def qr_arrise(request):
-    if not request.user.is_authenticated():
-        return HttpResponse("need super user!")
-    if request.method == "POST":
-        uf = QR_Form(request.POST)
-        if uf.is_valid():
-            pass
-    else:
-        uf = QR_Form()
-    return render_to_response('qr_arrise.html',{'uf':uf})
-
-
 
 def api(request):
     ret={"error":0}
@@ -580,17 +339,17 @@ def api(request):
     request_action=post_data["action"]
     print request_action
     request_action_func_list={
-        "user_register":register,
-        "user_login":login,
-        "user_logout":logout,
-        "user_info":user_info,
-        "user_edit_profile":user_edit_profile,
-        "qr_query":qr_query,
-        "card_edit":card_edit,
-        "card_create":card_create,
-        "card_query":card_query,
-        "res_query":res_query,
-        "news_query":news_query,
+        "user_register":user.register,
+        "user_login":user.login,
+        "user_logout":user.logout,
+        "user_info":user.info,
+        "user_edit_profile":user.edit_profile,
+        "qr_query":qrcode.qr_query,
+        "card_edit":qrcode.card_edit,
+        "card_create":qrcode.card_create,
+        "card_query":qrcode.card_query,
+        #  "res_query":res_query,
+        "news_query":news.news_query,
     }
     if ret["error"]==0 and not request_action in request_action_func_list.keys():
         ret["error"]=404
