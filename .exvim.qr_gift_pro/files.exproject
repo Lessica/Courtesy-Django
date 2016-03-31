@@ -15,6 +15,8 @@
  | |-__init__.py
  | |-admin.py
  | |-apps.py
+ | |-card.py
+ | |-commonupload.py
  | |-news.py
  | |-qrcode.py
  | |-tests.py

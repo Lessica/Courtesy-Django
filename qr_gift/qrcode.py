@@ -9,12 +9,19 @@
 
 from django.core.exceptions import *
 from django.db import IntegrityError
+from django import forms
+from django.http import HttpResponse
 
 from models.qr import *
 from models.account import *
+from commonupload import *
+
 import hashlib
 import datetime
 import time
+import StringIO
+from os.path import join
+
 
 def qr_query(request,post_data,ret):
     qr_id=post_data["qr_id"]
@@ -25,108 +32,115 @@ def qr_query(request,post_data,ret):
         return ret
     ret["qr_info"]=qr_model.toDict()
     qr_model.scan_count=qr_model.scan_count+1
-    #  if qr_model.is_recorded==True:
-        #  card=qr_model.card_token
-        #  ret["card_info"]=card.toDict()
-        #  if not request.user.is_authenticated():
-            #  card.view_count=card.view_count+1
-            #  if not card.first_read_at:
-                #  card.read_by_id=request.user.id
-            #  card.save()
-
-        #  elif request.user.id!=card.author_id:
-            #  card.view_count=card.view_count+1
-            #  if not card.first_read_at:
-                #  card.read_by_id=request.user.id
-                #  card.first_read_at=datetime.datetime.now()
-
-            #  card.save()
     qr_model.save()
 
     return ret
 
-def card_query(request,post_data,ret):
-    try:
-        card=CardModel.objects.get(token=post_data["token"])
-    except ( ValueError,ObjectDoesNotExist ):
-        ret["error"]=404
-        return ret
-    except KeyError:
-        ret["error"]=401
-        return ret
-    ##TODO
-    if card.banned:
-        ret["error"]=425
-        return ret
 
-    if not request.user.is_authenticated():
-        card.view_count=card.view_count+1
-        if not card.first_read_at:
-            card.first_read_at=datetime.datetime.now()
-        card.save()
+class QRArriseDownload(object):
+    def __init__(self,request):
+        self.request=request
 
-    elif request.user.id!=card.author_id:
-        card.view_count=card.view_count+1
-        if not card.first_read_at:
-            card.read_by_id=request.user.id
-            card.first_read_at=datetime.datetime.now()
-        card.save()
-    ret["card_info"]=card.toDict()
+    class DownloadForm(forms.Form):
+        def __init__(self, *args, **kwargs):
+            super(type(self),self).__init__(*args, **kwargs)
+            choice=[]
+            QRStyles=QRStyleModel.objects.all()
+            for QRStyle in QRStyles:
+                choice.append( (QRStyle.name,QRStyle.name) )
 
-    if card.visible_at>datetime.datetime.now():
-        ret["card_info"]["local_template"]=None
-    return ret
+            self.fields["qr_style"] = forms.ChoiceField(choices=choice)
+            self.fields["channel"]=forms.CharField(required=True)
+            self.fields["num"]=forms.IntegerField(required=True)
 
-def card_edit(request,post_data,ret):
-    if not request.user.is_authenticated():
-        ret["error"]=403
-        return ret
-    card_info=post_data["card_info"]
-    try:
-        card=CardModel.objects.get(token=post_data["token"])
-    except ( ValueError,ObjectDoesNotExist ):
-        ret["error"]=404
-        return ret
-    ##TODO
-    #  card.author=UserModel.objects.get(user_ptr_id=request.user.id)
-    if request.user.id!=card.author_id:
-        ret["error"]=425
-        return ret
-    if card.banned:
-        ret["error"]=425
-        return ret
-    card.local_template=card_info["local_template"]
-    card.is_public=card_info["is_public"]
-    card.is_editable=card_info["is_editable"]
-    card.visible_at=datetime.datetime.fromtimestamp(card_info["visible_at"])
-    card.edited_count=card.edited_count+1
-    card.save()
-    ret["card_info"]=card.toDict()
-    return ret
+    def download(self,uf):
+        qr_style_name = uf.cleaned_data['qr_style']
+        qr_channel = uf.cleaned_data['channel']
+        num = uf.cleaned_data['num']
+        qr_style_model=QRStyleModel.objects.get(name=qr_style_name)
 
-def card_create(request,post_data,ret):
-    if not request.user.is_authenticated():
-        ret["error"]=403
-        return ret
-    card_info=post_data["card_info"]
-    qr_code=QRCodeModel.objects.get(unique_id=post_data["qr_id"])
-    if qr_code.is_recorded:
-        ret["error"]=424
-        return ret
+        qr_list=[]
+        qr_content=[]
+        for i in range(0,num):
+            qr_id=hashlib.md5(str(time.time())+str(i)).hexdigest()
+            qr_list.append(QRCodeModel(channel=qr_channel,style=qr_style_model,unique_id=qr_id))
+            qr_content.append(qr_id)
 
-    new_card=CardModel()
-    new_card.author=UserModel.objects.get(user_ptr_id=request.user.id)
-    new_card.local_template=card_info["local_template"]
-    new_card.is_public=card_info["is_public"]
-    new_card.is_editable=card_info["is_editable"]
-    new_card.token=hashlib.md5(post_data["qr_id"]).hexdigest()
-    new_card.visible_at=datetime.datetime.fromtimestamp(card_info["visible_at"])
-    new_card.save()
+        QRCodeModel.objects.bulk_create(qr_list)
 
-    qr_code.is_recorded=True
-    qr_code.recorded_at=str(datetime.datetime.now())
-    qr_code.card_token=new_card
-    qr_code.save()
-    ret["card_info"]=new_card.toDict()
-    return ret
 
+        path=join("qr_gift","static","qrlist")
+        qr_context_path=join(path,"qrlist.txt" )
+        if not os.path.exists( path ):
+            os.makedirs(path)
+        qr_context=open(qr_context_path,"w")
+        qr_context.write( "\n".join(qr_content) )
+        qr_context.close()
+
+        # Open StringIO to grab in-memory ZIP contents
+        s = StringIO.StringIO()
+        # The zip compressor
+        zf = zipfile.ZipFile(s, "w")
+
+        if qr_style_model.style_border_binary:
+            filename = qr_style_model.style_border_binary.id_md5+".png"
+            fpath = join("qr_gift","static","qr_template","border",filename)
+            zf.write(fpath, "border.png")
+        if qr_style_model.style_center_binary:
+            filename = qr_style_model.style_center_binary.id_md5
+            fpath = join("qr_gift","static","qr_template","center",qr_style_model.style_border_binary.id_md5+".png")
+            zf.write(fpath, "center.png")
+
+        filename = qr_style_model.style_script.id_md5
+        fpath = join("qr_gift","static","qr_template","script",qr_style_model.style_script.id_md5+".py")
+        zf.write(fpath, "script.py")
+        zf.write(qr_context_path, "list.txt")
+        zf.close()
+        resp = HttpResponse(s.getvalue(), content_type = "application/x-zip-compressed")
+        resp['Content-Disposition'] = 'attachment; filename={0}.zip'.format(qr_style_name)
+        os.remove(qr_context_path)
+        return resp
+
+
+class QRStyleUpload(CommonUpload):
+    #  def __init__(self,request,ret):
+        #  self.request=request
+        #  self.ret=ret
+    class UploadForm(forms.Form):
+        name = forms.CharField(required=True)
+
+        style_border_binary=forms.FileField(required=False)
+        style_center_binary=forms.FileField(required=False)
+        style_script=forms.FileField(required=True)
+    def upload(self,uf):
+        name = uf.cleaned_data['name']
+        #  try:
+        model=QRStyleModel(name=name)
+        sysarg=[]
+        if self.request.FILES.has_key('style_border_binary'):
+            file_id,file_path,kind=handle_uploaded_file(self.request.FILES['style_border_binary'],name,join("qr_template","border"))
+            res1=CommonResourceModel(id_md5=file_id,kind=kind)
+            res1.save()
+            model.style_border_binary=res1
+            sysarg.append(file_id)
+
+        if self.request.FILES.has_key('style_center_binary'):
+            file_id,file_path,kind=handle_uploaded_file(self.request.FILES['style_center_binary'],name,join("qr_template","center"))
+            res2=CommonResourceModel(id_md5=file_id,kind=kind)
+            res2.save()
+            model.style_center_binary=res2
+            sysarg.append(file_id)
+
+        if self.request.FILES.has_key('style_script'):
+            file_id,file_path,kind=handle_uploaded_file(self.request.FILES['style_script'],name,join("qr_template","script"))
+            res3=CommonResourceModel(id_md5=file_id,kind=kind)
+            res3.save()
+            model.style_script=res3
+            sysarg.append(file_id)
+
+
+        model.save()
+
+        self.ret["file_id"]=sysarg
+        #  except Exception,e:
+            #  self.ret["error"]=str(e)
