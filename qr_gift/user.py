@@ -129,9 +129,6 @@ def password_change():
     return HttpResponse(json.dumps(res), content_type="application/json")
 
 class UserAvatarUpload(CommonUpload):
-    def __init__(self,request,ret):
-        self.request=request
-        self.ret=ret
 
     class UploadForm(forms.Form):
         avatar=forms.ImageField(required=True)
@@ -142,15 +139,42 @@ class UserAvatarUpload(CommonUpload):
         img=Image.open(server_path)
         res=CommonResourceModel(id_md5=id_md5)
         res.save()
+
+        um=UserModel.objects.get(user_ptr_id=self.request.user.id)
+        um.avatar=res
+        um.save()
         self.ret["id"]=id_md5
+
         for size in [300,150,60]:
             img.thumbnail((size,size),Image.ANTIALIAS)
             save_to_path=server_path[:-4]+"_"+str(size)+".png"
-            res=CommonResourceModel(id_md5=id_md5+"_"+str(size)+".png")
+            res=CommonResourceModel(id_md5=id_md5+"_"+str(size))
             res.save()
             #  self.ret[str(size)+"px"]={"id_md5":id_md5+".png"}
             img.save(save_to_path,"png")
-            if size==300:
-                um=UserModel.objects.get(user_ptr_id=self.request.user.id)
-                um.avatar=res
-                um.save()
+
+
+class UserBannerUpload(CommonUpload):
+
+    class UploadForm(forms.Form):
+        banner=forms.ImageField(required=True)
+
+    def upload(self,uf):
+        [id_md5,server_path,kind]=handle_uploaded_file(self.request.FILES['banner'],str(time.time()),"banner")
+        url_path=server_path[7:]
+        img=Image.open(server_path)
+        res=CommonResourceModel(id_md5=id_md5)
+        res.save()
+
+        um=UserModel.objects.get(user_ptr_id=self.request.user.id)
+        um.banner=res
+        um.save()
+        self.ret["id"]=id_md5
+
+        size=1200
+        img.thumbnail((size,size),Image.ANTIALIAS)
+        save_to_path=server_path[:-4]+"_"+str(size)+".jpg"
+        res=CommonResourceModel(id_md5=id_md5+"_"+str(size)+".jpg")
+        res.save()
+        #  self.ret[str(size)+"px"]={"id_md5":id_md5+".png"}
+        img.save(save_to_path,"jpg")

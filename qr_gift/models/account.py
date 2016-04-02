@@ -34,7 +34,8 @@ class UserModel(User):
     be_subscribe_count=models.IntegerField(default=0)
 
     nick=models.CharField(max_length=256,default=u"路人甲")
-    avatar=models.ForeignKey(CommonResourceModel,null=True)
+    avatar=models.ForeignKey(CommonResourceModel,null=True,related_name="avater")
+    banner=models.ForeignKey(CommonResourceModel,null=True,related_name="banner")
     mobile=models.CharField(max_length=16,default="")
     birthday=models.CharField(max_length=16,default="")
     gender=models.IntegerField(default=1)
@@ -68,4 +69,6 @@ class UserModel(User):
         }
         if self.avatar:
             dic["profile"]["avatar"]=self.avatar.id_md5
+        if self.banner:
+            dic["profile"]["banner"]=self.banner.id_md5
         return dic

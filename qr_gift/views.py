@@ -41,6 +41,7 @@ def common_upload(request,action):
 
     act2class={
         "avatar":user.UserAvatarUpload,
+        "banner":user.UserBannerUpload,
         "qr_style":qrcode.QRStyleUpload,
         "card_res":card.CardResourceUpload,
         "news":news.DaliyNewsUpload,

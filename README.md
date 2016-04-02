@@ -177,7 +177,27 @@ POST /api/courtesy
 ```
 
 ### 上传用户头像 Upload Avatar
-POST /upload/avatar (Field: file)
+POST /upload/avatar (Field: avater)
+
+- 尺寸不合要求 Size Dismatch
+```json
+{
+    "error": 422,
+    "timestamp": 1456283003
+}
+```
+
+- 上传成功 Upload Succeed
+```json
+{
+    "error": 0,
+    "id": "59d632f13aef67deace793df18174dc0",
+    "time": 1456503286
+}
+```
+
+### 上传用户背景 Upload Banner
+POST /upload/banner (Field: banner)
 
 - 尺寸不合要求 Size Dismatch
 ```json
