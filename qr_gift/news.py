@@ -20,9 +20,6 @@ def news_query(request,post_data,ret):
     return ret
 
 class DaliyNewsUpload(CommonUpload):
-    #  def __init__(self,request,ret):
-        #  self.request=request
-        #  self.ret=ret
     class UploadForm(forms.Form):
         def __init__(self, *args, **kwargs):
             super(type( self ),self).__init__(*args, **kwargs)

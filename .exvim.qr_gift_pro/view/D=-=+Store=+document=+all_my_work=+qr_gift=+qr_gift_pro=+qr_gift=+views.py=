@@ -13,12 +13,8 @@ inoremap <buffer> <silent> " =AutoPairsInsert('"')
 inoremap <buffer> <silent> ' =AutoPairsInsert('''')
 inoremap <buffer> <silent> ( =AutoPairsInsert('(')
 inoremap <buffer> <silent> ) =AutoPairsInsert(')')
-nnoremap <buffer> <silent> î :call AutoPairsJump()
-xnoremap <buffer> <silent> î :call AutoPairsJump()
-onoremap <buffer> <silent> î :call AutoPairsJump()
-nnoremap <buffer> <silent> ð :call AutoPairsToggle()
-xnoremap <buffer> <silent> ð :call AutoPairsToggle()
-onoremap <buffer> <silent> ð :call AutoPairsToggle()
+noremap <buffer> <silent> î :call AutoPairsJump()
+noremap <buffer> <silent> ð :call AutoPairsToggle()
 inoremap <buffer> <silent> [ =AutoPairsInsert('[')
 inoremap <buffer> <silent> ] =AutoPairsInsert(']')
 inoremap <buffer> <silent> ` =AutoPairsInsert('`')
@@ -68,7 +64,7 @@ setlocal foldexpr=0
 setlocal foldignore=#
 setlocal foldlevel=1
 setlocal foldmarker={,}
-setlocal foldmethod=indent
+setlocal foldmethod=marker
 setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=foldtext()
@@ -131,100 +127,13 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-36
-normal! zo
-56
-normal! zo
-57
-normal! zo
-63
-normal! zo
-70
-normal! zo
-77
-normal! zo
-82
-normal! zo
-92
-normal! zo
-94
-normal! zo
-97
-normal! zo
-104
-normal! zo
-111
-normal! zo
-122
-normal! zo
-125
-normal! zo
-146
-normal! zo
-156
-normal! zo
-162
-normal! zo
-171
-normal! zo
-172
-normal! zo
-177
-normal! zo
-184
-normal! zo
-185
-normal! zo
-189
-normal! zo
-199
-normal! zo
-201
-normal! zo
-204
-normal! zo
-209
-normal! zo
-184
-normal! zc
-217
-normal! zo
-218
-normal! zo
-222
-normal! zo
-228
-normal! zo
-230
-normal! zo
-237
-normal! zo
-242
-normal! zo
-276
-normal! zo
-277
-normal! zo
-279
-normal! zo
-281
-normal! zo
-284
-normal! zo
-292
-normal! zo
-300
-normal! zo
-308
-normal! zo
-320
-normal! zo
-let s:l = 57 - ((2 * winheight(0) + 13) / 26)
+let s:l = 104 - ((24 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-57
-normal! 028|
+104
+normal! 022|
+lcd D:\Store\document\all_my_work\qr_gift\qr_gift_pro
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

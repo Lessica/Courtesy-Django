@@ -16,16 +16,26 @@ import time
 reload(sys)
 sys.setdefaultencoding("utf-8")
 def testRequest():
-    """Login"""
-    reg={"email":"test005@126.com","pwd":"test005"}
-    reg={"action":"user_login","account":reg}
+    """Register"""
+    #  reg={"email":"test001@126.com","pwd":"test001"}
     #  reg={"action":"user_register","account":reg}
+    #  data=json.dumps(reg)
+    #  r = requests.post("http://127.0.0.1:8000/api/courtesy",data)
+    #  print r.text
+    #  _cookies = r.cookies
+    """Login"""
+    reg={"email":"test001@126.com","pwd":"test001"}
+    reg={"action":"user_login","account":reg}
     data=json.dumps(reg)
     r = requests.post("http://127.0.0.1:8000/api/courtesy",data)
     print r.text
     _cookies = r.cookies
-
-    #  """Logout"""
+    """Info"""
+    #  reg={"action":"user_info","email":"test001@126.com"}
+    #  data=json.dumps(reg)
+    #  r = requests.post("http://127.0.0.1:8000/api/courtesy",data,cookies=_cookies)
+    #  print r.text
+    """Logout"""
     #  reg={"action":"user_logout"}
     #  data=json.dumps(reg)
     #  print r.text
@@ -33,28 +43,38 @@ def testRequest():
     #  _cookies = r.cookies
     #  print r.text
 
-    reg={"action":"user_info","email":"test004@126.com"}
+    """ news query """
+    reg={"action":"news_query","s_date":"2016-03-31"}
     data=json.dumps(reg)
+    print data
     r = requests.post("http://127.0.0.1:8000/api/courtesy",data,cookies=_cookies)
     print r.text
 
-    #  """qr_query"""
-    #  reg={"action":"card_query","token":"00b3eed3b733afba6e45cdedf0036801"}
+    """qr_query"""
+    #  reg={"action":"qr_query","qr_id":"da3ac95ccd0c44e7e080b911bf57ce6c"}
     #  data=json.dumps(reg)
     #  print data
     #  r = requests.post("http://127.0.0.1:8000/api/courtesy",data,cookies=_cookies)
     #  print r.text
 
+    """card_create"""
     #  reg={
         #  "action":"card_create",
-        #  "qr_id":"8657680eb591af711e76a76d3c59262e",
+        #  "qr_id":"c1f3f1106dd37d7538dd0a7946ccc025",
         #  "card_info":{
             #  "local_template":"you will do it :)",
             #  "is_public":True,
-            #  "visible_at":str(datetime.datetime(1999,2,2)),
+            #  "visible_at":time.mktime( datetime.datetime(1999,2,2).timetuple() ),
             #  "is_editable":True,
         #  }
     #  }
+    #  data=json.dumps(reg)
+    #  print data
+    #  r = requests.post("http://127.0.0.1:8000/api/courtesy",data,cookies=_cookies)
+    #  print r.text
+
+    """card_query"""
+    #  reg={"action":"card_query","token":"9d27cae6567cb2bb4cd5c3cd74854e42"}
     #  data=json.dumps(reg)
     #  print data
     #  r = requests.post("http://127.0.0.1:8000/api/courtesy",data,cookies=_cookies)
@@ -64,7 +84,7 @@ def testRequest():
 
     #  reg={
         #  "action":"card_edit",
-        #  "token":"00b3eed3b733afba6e45cdedf0036801",
+        #  "token":"9d27cae6567cb2bb4cd5c3cd74854e42",
         #  "card_info":{
             #  "local_template":"you will do it :)",
             #  "is_public":True,
@@ -99,11 +119,11 @@ def testRequest():
     #  print r.text
 
     """res_query"""
-    reg={"action":"res_query","hash":"3120c808d57e9818589b644ae2b6cb956e65f169b1972fa6de745da298a239d7"}
-    data=json.dumps(reg)
-    print data
-    r = requests.post("http://127.0.0.1:8000/api/courtesy",data,cookies=_cookies)
-    print r.text
+    #  reg={"action":"res_query","hash":"3120c808d57e9818589b644ae2b6cb956e65f169b1972fa6de745da298a239d7"}
+    #  data=json.dumps(reg)
+    #  print data
+    #  r = requests.post("http://127.0.0.1:8000/api/courtesy",data,cookies=_cookies)
+    #  print r.text
 
 if __name__ == '__main__':
     testRequest()
