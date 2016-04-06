@@ -492,7 +492,7 @@ POST /upload/card_res (Field: res)
         },
         "video": null,
         "date": "2016-03-28",
-        "voice": null
+        "audio": null
     },
     "time": 1459172482,
     "error": 0
