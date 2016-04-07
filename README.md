@@ -1,4 +1,4 @@
-# 礼记-后台业务
+# 礼记 - 后台业务
 
 ## 协议 Protocol
 
@@ -487,12 +487,12 @@ POST /upload/card_res (Field: res)
         },
         "string": "test",
         "image": {
-            "sha_256": "",
-            "id": "f5f31fe7306de68436e07ef0fd0a47ee"
+            "sha256": "",
+            "rid": "f5f31fe7306de68436e07ef0fd0a47ee"
         },
         "video": null,
         "date": "2016-03-28",
-        "voice": null
+        "audio": null
     },
     "time": 1459172482,
     "error": 0
