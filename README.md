@@ -480,20 +480,43 @@ POST /upload/card_res (Field: res)
 ```
 ``` json
 {
-    "news": {
-        "style": {
-            "style_id": 1,
-            "style_name": "black"
+    "news": [
+        {
+            "style": {
+                "style_id": 0,
+                "style_name": "white"
+            },
+            "string": "News Card",
+            "image": {
+                "sha256": "",
+                "rid": "f5f31fe7306de68436e07ef0fd0a47ee"
+            },
+            "video": null,
+            "date": "2016-03-28",
+            "audio": {
+                "sha256": "",
+                "rid": "e48a31fb7f5e091f3fa22cdf449d5441"
+            },
+            "url": null,
+            "type": 0,
         },
-        "string": "test",
-        "image": {
-            "sha256": "",
-            "rid": "f5f31fe7306de68436e07ef0fd0a47ee"
+        {
+            "style": {
+                "style_id": 1,
+                "style_name": "black"
+            },
+            "string": "Link Card",
+            "image": {
+                "sha256": "",
+                "rid": "5f1be1879cf7e69f1507ba14ff7cdcfe"
+            },
+            "video": null,
+            "date": "2016-03-28",
+            "audio": null,
+            "url": "https://82flex.com",
+            "type": 1,
         },
-        "video": null,
-        "date": "2016-03-28",
-        "audio": null
-    },
+    ],
     "time": 1459172482,
     "error": 0
 }
