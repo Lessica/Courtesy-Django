@@ -46,8 +46,8 @@ class DaliyNewsUpload(CommonUpload):
         res1.save()
         model.image=res1
 
-        if self.request.FILES.has_key('voice_res'):
-            file_id,file_path,kind=handle_uploaded_file(self.request.FILES['voice_res'],str(time.time()),join("news","voice"))
+        if self.request.FILES.has_key('audio_res'):
+            file_id,file_path,kind=handle_uploaded_file(self.request.FILES['audio_res'],str(time.time()),join("news","audio"))
             res2=CommonResourceModel(id_md5=file_id,kind=kind)
             res2.save()
             model.voice=res2

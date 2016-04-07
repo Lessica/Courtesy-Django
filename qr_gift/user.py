@@ -12,6 +12,7 @@ from django.db import IntegrityError
 
 from models.account import *
 from commonupload import *
+from PIL import Image
 
 def login(request,post_data,ret):
     #TODO:is logined

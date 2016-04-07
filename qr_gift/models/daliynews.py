@@ -31,7 +31,7 @@ class DaliyNewsModel(models.Model):
 
     image=models.ForeignKey(CommonResourceModel,related_name='image_res',null=True)
     video=models.ForeignKey(CommonResourceModel,related_name='video_res',null=True)
-    voice=models.ForeignKey(CommonResourceModel,related_name='voice_res',null=True)
+    audio=models.ForeignKey(CommonResourceModel,related_name='voice_res',null=True)
     date_str=models.CharField(max_length=16)
     string=models.TextField(null=True)
     style=models.ForeignKey(DaliyNewsStyleModel,null=True)
@@ -42,7 +42,7 @@ class DaliyNewsModel(models.Model):
         ret={
             'image':self.image.toDict(),
             'video':None if self.video==None else self.video.toDict(),
-            'voice':None if self.voice==None else self.voice.toDict(),
+            'audio':None if self.audio==None else self.audio.toDict(),
             'date':self.date_str,
             'string':self.string,
             'style':self.style.toDict(),

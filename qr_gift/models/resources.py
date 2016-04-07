@@ -22,8 +22,8 @@ class CommonResourceModel(models.Model):
     uploaded_at=models.DateTimeField(auto_now_add=True)
     def toDict(self):
         ret={
-            "id":self.id_md5,
-            "sha_256":self.sha_256,
+            "rid":self.id_md5,
+            "sha256":self.sha_256,
         }
         return ret
 
