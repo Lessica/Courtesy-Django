@@ -218,7 +218,7 @@ POST /upload/banner (Field: banner)
 
 ## 二维码业务逻辑 QRCode Workflow
 
-![flow](http://i11.tietuku.com/48d5269a16f36722.png "flow")
+![flow]( https://github.com/Lessica/Courtesy-Django/blob/master/flow.png "flow")
 
 ### 查询二维码状态 Query QRCode Status
 ```json
