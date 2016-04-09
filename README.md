@@ -286,7 +286,7 @@ POST /upload/banner (Field: banner)
         },
         "is_editable": true,
         "is_public": true,
-        "local_template": "you will do it :)",
+        "local_template": "%xml_data%",
         "view_count": 1,
         "author": {
             "user_id": 4,
@@ -323,7 +323,7 @@ POST /upload/banner (Field: banner)
     "action": "card_edit",
     "token": "00b3eed3b733afba6e45cdedf0036801",
     "card_info": {
-        "local_template": "you will do it :)",
+        "local_template": "%xml_data%",
         "is_editable": true,
         "is_public": true,
         "visible_at": "1999-02-02 00:00:00"
@@ -346,7 +346,7 @@ POST /upload/banner (Field: banner)
         },
         "is_editable": true,
         "is_public": true,
-        "local_template": "you will do it :)",
+        "local_template": "%xml_data%",
         "view_count": 1,
         "author": {
             "user_id": 4,
@@ -407,7 +407,7 @@ POST /upload/banner (Field: banner)
     "action": "card_create",
     "qr_id": "3a0137fbecf5a7bfbc25af10c27c54b4",
     "card_info": {
-        "local_template": "you will do it :)",
+        "local_template": "%xml_data%",
         "is_editable": true,
         "is_public": true,
         "visible_at": "1999-02-02 00:00:00"
@@ -423,7 +423,7 @@ POST /upload/banner (Field: banner)
         "read_by": null,
         "is_editable": true,
         "is_public": true,
-        "local_template": "you will do it :)",
+        "local_template": "%xml_data%",
         "view_count": 0,
         "author": {
             "user_id": 4,
