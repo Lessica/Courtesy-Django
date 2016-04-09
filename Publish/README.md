@@ -2,7 +2,7 @@
 
 ## 流程图 Flowchart
 
-
+[发布流程图](https://github.com/Lessica/Courtesy-Django/blob/master/Publish/%E3%80%8C%E7%A4%BC%E8%AE%B0%E3%80%8D%E5%8D%A1%E7%89%87%E5%8F%91%E5%B8%83%E6%B5%81%E7%A8%8B.png "发布流程")
 
 ## 同步目录结构 Rsync Directory Structure
 ```
