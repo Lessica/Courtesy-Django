@@ -377,6 +377,30 @@ POST /upload/banner (Field: banner)
 
 - 卡片被禁用 Banned Card (同上)
 
+### 同步确认请求 Sync Query
+```json
+{
+    "action": "card_create_query",
+    "qr_id": "3a0137fbecf5a7bfbc25af10c27c54b4",
+    "card_info": {
+        "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3",
+        "local_template": "%xml_data%",
+        "is_editable": true,
+        "is_public": true,
+        "visible_at": "1999-02-02 00:00:00"
+    }
+}
+```
+
+- 校验成功，请客户端开始同步 Succeed, Ready For Sync
+```json
+{
+    "time": 1456622272,
+    "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3",
+    "error": 0
+}
+```
+
 ### 发布卡片 Publish New Card
 ```json
 {
@@ -412,7 +436,7 @@ POST /upload/banner (Field: banner)
         "created_at": 1456628015,
         "modified_at": 1456628015,
         "first_read_at": null,
-        "token": "080f651e3fcca17df3a47c2cecfcb880",
+        "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3",
         "edited_count": 0,
         "stars": 0
     },
@@ -470,6 +494,7 @@ POST /upload/card_res (Field: res)
     "error": 0
 }
 ```
+
 ### 索取新闻 News Query
 
 ``` json
@@ -520,5 +545,4 @@ POST /upload/card_res (Field: res)
     "time": 1459172482,
     "error": 0
 }
-
 ```
