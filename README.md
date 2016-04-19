@@ -381,9 +381,9 @@ POST /upload/banner (Field: banner)
 ```json
 {
     "action": "card_create_query",
-    "qr_id": "3a0137fbecf5a7bfbc25af10c27c54b4",
     "card_info": {
         "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3",
+        "qr_id": "3a0137fbecf5a7bfbc25af10c27c54b4",
         "local_template": "%xml_data%",
         "is_editable": true,
         "is_public": true,
@@ -405,8 +405,9 @@ POST /upload/banner (Field: banner)
 ```json
 {
     "action": "card_create",
-    "qr_id": "3a0137fbecf5a7bfbc25af10c27c54b4",
     "card_info": {
+        "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3",
+        "qr_id": "3a0137fbecf5a7bfbc25af10c27c54b4",
         "local_template": "%xml_data%",
         "is_editable": true,
         "is_public": true,
