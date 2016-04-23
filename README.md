@@ -537,6 +537,8 @@ POST /upload/card_res (Field: res)
     "s_date": "2016-03-28"
 }
 ```
+
+- 成功 Succeed
 ``` json
 {
     "news": [
@@ -577,6 +579,24 @@ POST /upload/card_res (Field: res)
         },
     ],
     "time": 1459172482,
+    "error": 0
+}
+```
+
+### 删除卡片 (实际上是封禁) Delete Card
+
+``` json
+{
+    "action": "card_delete",
+    "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3"
+}
+```
+
+- 成功 Succeed
+```json
+{
+    "time": 1456622272,
+    "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3",
     "error": 0
 }
 ```
