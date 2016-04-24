@@ -600,3 +600,21 @@ POST /upload/card_res (Field: res)
     "error": 0
 }
 ```
+
+### 恢复卡片 Restore Card
+
+``` json
+{
+    "action": "card_restore",
+    "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3"
+}
+```
+
+- 成功 Succeed
+```json
+{
+    "time": 1456622272,
+    "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3",
+    "error": 0
+}
+```
