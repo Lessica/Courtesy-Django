@@ -317,64 +317,6 @@ POST /upload/banner (Field: banner)
 
 - 卡片未到查询时间 Card Not Visible (local_template = null)
 
-### 修改卡片内容 Edit Card
-```json
-{
-    "action": "card_edit",
-    "token": "00b3eed3b733afba6e45cdedf0036801",
-    "card_info": {
-        "local_template": "%xml_data%",
-        "is_editable": true,
-        "is_public": true,
-        "visible_at": "1999-02-02 00:00:00"
-    }
-}
-```
-
-- 成功 Succeed
-```json
-{
-    "error": 0,
-    "card_info": {
-        "read_by": {
-            "user_id": 5,
-            "email": "test005@126.com",
-            "profile": {
-                "nick": "test005",
-                "avatar": "f7ba6151aadf2379394678ac754c9b28"
-            }
-        },
-        "is_editable": true,
-        "is_public": true,
-        "local_template": "%xml_data%",
-        "view_count": 1,
-        "author": {
-            "user_id": 4,
-            "email": "test004@126.com",
-            "profile": {
-                "nick": "test004",
-                "avatar": "1a86a0de6143dfa55d87a70ab0f302ce"
-            }
-        },
-        "created_at": 1456547164,
-        "modified_at": 1456548900,
-        "first_read_at": null,
-        "token": "00b3eed3b733afba6e45cdedf0036801",
-        "edited_count": 1,
-        "stars": 0
-    },
-    "timestamp": 1456283003
-}
-```
-
-- 修改用户无权限 No Card Privilege
-```json
-{
-    "error": 425,
-    "timestamp": 1456283098
-}
-```
-
 - 卡片被禁用 Banned Card (同上)
 
 ### 同步确认请求 Sync Query
@@ -391,6 +333,7 @@ POST /upload/banner (Field: banner)
     }
 }
 ```
+**修改：card_edit_query**
 
 - 校验成功，请客户端开始同步 Succeed, Ready For Sync
 ```json
@@ -415,6 +358,7 @@ POST /upload/banner (Field: banner)
     }
 }
 ```
+**修改：card_edit**
 
 - 成功 Succeed
 ```json
