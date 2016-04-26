@@ -16,7 +16,7 @@ import time
 def news_query(request,post_data,ret):
     date_str=post_data["s_date"]
     md_news=DaliyNewsModel.objects.get(date_str=date_str)
-    ret["news"]=md_news.toDict()
+    ret["news"]=list( md_news.toDict() )
     return ret
 
 class DaliyNewsUpload(CommonUpload):

@@ -16,6 +16,7 @@ from resources import *
 from account import *
 import datetime
 import time
+import json
 
 
 class TemplateModel(models.Model):
@@ -64,16 +65,15 @@ class CardModel(models.Model):
             "modified_at":int(str(time.mktime(self.modified_at.timetuple()))[:-2]),
             "stars":self.stars,
             "visible_at":int(str(time.mktime(self.visible_at.timetuple()))[:-2]),
-            "local_template":self.local_template,
+            "local_template":json.loads( self.local_template ),
         }
 
         if self.read_by:
             dic["read_by"]=self.read_by.toDict()
-        else:
-            dic["read_by"]=""
 
         if self.first_read_at:
-            dic["first_read_at"]=int(str(time.mktime(self.first_read_at.timetuple()))[:-2]),
+            dic["first_read_at"]=int(str(time.mktime(self.first_read_at.timetuple()))[:-2])
+            #  print dic
         else:
             dic["first_read_at"]=self.first_read_at
         #  tz_info = self.visible_at.tzinfo

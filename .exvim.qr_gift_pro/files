@@ -2,7 +2,12 @@ D:\Store\document\all_my_work\qr_gift\qr_gift_pro\manage.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\testRequest.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\admin.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\apps.py
+D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\card.py
+D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\commonupload.py
+D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\news.py
+D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\qrcode.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\tests.py
+D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\user.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\views.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\__init__.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\account.py
@@ -13,6 +18,7 @@ D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\qr.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\resources.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\signals.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\models\__init__.py
+D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\border\b030c9d7f221ba466176428045fe5d2f.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\script\0f56a987be0f020692598a9578cc2578.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\script\33e07ef8a9ae3a6c4e17b16868049acb.py
 D:\Store\document\all_my_work\qr_gift\qr_gift_pro\qr_gift\static\qr_template\script\686ddea137a1c452f55d8ec1f251631c.py

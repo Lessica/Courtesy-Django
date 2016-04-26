@@ -1,6 +1,6 @@
 @echo off
 set DEST=.\.exvim.qr_gift_pro
-set TOOLS=C:\Users\Anemone\.vim\tools\
+set TOOLS=C:\exVim\vimfiles\tools\
 set FILE_SUFFIXS=*.PY
 set GAWK_SUFFIX=exc
 set FILE_FILTER_PATTERN="\\\\.py$"

@@ -109,11 +109,17 @@ def api(request):
         "user_info":user.info,
         "user_edit_profile":user.edit_profile,
         "qr_query":qrcode.qr_query,
+        "card_edit_query":card.card_edit_query,
         "card_edit":card.card_edit,
+        "card_delete":card.card_ban,
+        "card_restore":card.card_restore,
         "card_create":card.card_create,
         "card_query":card.card_query,
+        "card_create_query":card.card_create_query,
+
         "res_query":res_query,
         "news_query":news.news_query,
+
     }
     if ret["error"]==0 and not request_action in request_action_func_list.keys():
         ret["error"]=404

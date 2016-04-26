@@ -131,13 +131,12 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 34 - ((10 * winheight(0) + 26) / 52)
+let s:l = 65 - ((17 * winheight(0) + 18) / 37)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-34
-normal! 062|
-lcd D:\Store\document\all_my_work\qr_gift\qr_gift_pro
+65
+normal! 060|
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :

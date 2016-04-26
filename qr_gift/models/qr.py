@@ -61,6 +61,8 @@ class QRCodeModel(models.Model):
             "scan_count":self.scan_count,
             #  "card_token":self.card_token.token,
         }
+        if self.card_token:
+            dic[ "card_token" ]=self.card_token.token
         if self.recorded_at:
             dic[ "recorded_at" ]=int(str(time.mktime(self.recorded_at.timetuple()))[:-2])
         else:

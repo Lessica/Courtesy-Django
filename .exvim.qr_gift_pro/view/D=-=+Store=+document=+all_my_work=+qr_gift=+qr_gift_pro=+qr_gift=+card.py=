@@ -68,7 +68,7 @@ setlocal foldexpr=0
 setlocal foldignore=#
 setlocal foldlevel=1
 setlocal foldmarker={,}
-setlocal foldmethod=marker
+setlocal foldmethod=indent
 setlocal foldminlines=1
 setlocal foldnestmax=20
 setlocal foldtext=foldtext()
@@ -131,13 +131,28 @@ setlocal nowinfixheight
 setlocal nowinfixwidth
 setlocal wrap
 setlocal wrapmargin=0
-let s:l = 10 - ((9 * winheight(0) + 26) / 52)
+53
+normal! zo
+54
+normal! zo
+59
+normal! zo
+61
+normal! zo
+65
+normal! zo
+71
+normal! zo
+72
+normal! zo
+78
+normal! zo
+let s:l = 89 - ((7 * winheight(0) + 26) / 52)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-10
-normal! 0
-lcd D:\Store\document\all_my_work\qr_gift\qr_gift_pro
+89
+normal! 056|
 let &so = s:so_save | let &siso = s:siso_save
 doautoall SessionLoadPost
 " vim: set ft=vim :
