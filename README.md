@@ -144,8 +144,8 @@ POST /api/courtesy
         "profile": {
             "nick": "\u6211\u53eb i_82",
             "avatar": "\\static\\avatar\\aaca0f5eb4d2d98a6ce6dffa99f8254b_300.png",
-            "mobile": "13270593207",
-            "birthday": "1996-06-18",
+            "mobile": "13800138000",
+            "birthday": "1972-03-21",
             "gender": 1,
             "province": "\u6c5f\u82cf",
             "city": "\u5357\u4eac",
@@ -165,8 +165,8 @@ POST /api/courtesy
     "profile": {
         "nick": "\u6211\u53eb i_82",
         "avatar": "\\static\\avatar\\aaca0f5eb4d2d98a6ce6dffa99f8254b_300.png",
-        "mobile": "13270593207",
-        "birthday": "1996-06-18",
+        "mobile": "13800138000",
+        "birthday": "1972-03-21",
         "gender": 1,
         "province": "\u6c5f\u82cf",
         "city": "\u5357\u4eac",
@@ -286,7 +286,7 @@ POST /upload/banner (Field: banner)
         },
         "is_editable": true,
         "is_public": true,
-        "local_template": "you will do it :)",
+        "local_template": "%xml_data%",
         "view_count": 1,
         "author": {
             "user_id": 4,
@@ -317,106 +317,108 @@ POST /upload/banner (Field: banner)
 
 - 卡片未到查询时间 Card Not Visible (local_template = null)
 
-### 修改卡片内容 Edit Card
+- 卡片被禁用 Banned Card (同上)
+
+### 同步确认请求 Sync Query
 ```json
 {
-    "action": "card_edit",
-    "token": "00b3eed3b733afba6e45cdedf0036801",
+    "action": "card_create_query",
     "card_info": {
-        "local_template": "you will do it :)",
+        "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3",
+        "qr_id": "3a0137fbecf5a7bfbc25af10c27c54b4",
+        "local_template": "%xml_data%",
         "is_editable": true,
         "is_public": true,
         "visible_at": "1999-02-02 00:00:00"
     }
 }
 ```
+**修改：card_edit_query**
 
-- 成功 Succeed
+- 校验成功，请客户端开始同步 Succeed, Ready For Sync
 ```json
 {
-    "error": 0,
-    "card_info": {
-        "read_by": {
-            "user_id": 5,
-            "email": "test005@126.com",
-            "profile": {
-                "nick": "test005",
-                "avatar": "f7ba6151aadf2379394678ac754c9b28"
-            }
-        },
-        "is_editable": true,
-        "is_public": true,
-        "local_template": "you will do it :)",
-        "view_count": 1,
-        "author": {
-            "user_id": 4,
-            "email": "test004@126.com",
-            "profile": {
-                "nick": "test004",
-                "avatar": "1a86a0de6143dfa55d87a70ab0f302ce"
-            }
-        },
-        "created_at": 1456547164,
-        "modified_at": 1456548900,
-        "first_read_at": null,
-        "token": "00b3eed3b733afba6e45cdedf0036801",
-        "edited_count": 1,
-        "stars": 0
-    },
-    "timestamp": 1456283003
+    "time": 1456622272,
+    "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3",
+    "error": 0
 }
 ```
-
-- 修改用户无权限 No Card Privilege
-```json
-{
-    "error": 425,
-    "timestamp": 1456283098
-}
-```
-
-- 卡片被禁用 Banned Card (同上)
 
 ### 发布卡片 Publish New Card
 ```json
 {
     "action": "card_create",
-    "qr_id": "3a0137fbecf5a7bfbc25af10c27c54b4",
     "card_info": {
-        "local_template": "you will do it :)",
+        "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3",
+        "qr_id": "3a0137fbecf5a7bfbc25af10c27c54b4",
+        "local_template": "%xml_data%",
         "is_editable": true,
         "is_public": true,
         "visible_at": "1999-02-02 00:00:00"
     }
 }
 ```
+**修改：card_edit**
 
 - 成功 Succeed
 ```json
 {
-    "error": 0,
-    "card_info": {
-        "read_by": null,
-        "is_editable": true,
-        "is_public": true,
-        "local_template": "you will do it :)",
-        "view_count": 0,
-        "author": {
-            "user_id": 4,
-            "email": "test004@126.com",
-            "profile": {
-                "nick": "test004",
-                "avatar": "1a86a0de6143dfa55d87a70ab0f302ce"
+    "error":0,
+    "time":1461246479,
+    "card_info":{
+        "is_public":true,
+        "author":{
+            "registered_at":1459181174,
+            "last_login_at":1461243724,
+            "card_count":0,
+            "user_id":4,
+            "email":"i.82@qq.com",
+            "profile":{
+                "avatar":"b10eec2cdaf08abd437a70dbfe82d221",
+                "nick":"i_82",
+                "city":"扬州市",
+                "mobile":"13800138000",
+                "gender":0,
+                "area":"邗江区",
+                "birthday":"1972-03-21",
+                "introduction":"Love is a play that a person who gets gains and losses!",
+                "province":"江苏省"
             }
         },
-        "created_at": 1456628015,
-        "modified_at": 1456628015,
-        "first_read_at": null,
-        "token": "080f651e3fcca17df3a47c2cecfcb880",
-        "edited_count": 0,
-        "stars": 0
-    },
-    "timestamp": 1456628016
+        "is_editable":false,
+        "visible_at":0,
+        "created_at":1461246479,
+        "view_count":0,
+        "read_by":"",
+        "local_template":{
+            "shouldAutoPlayAudio":false,
+            "fontType":0,
+            "content":"说点什么吧…… ￼ ",
+            "fontSize":16,
+            "styleID":0,
+            "alignmentType":0,
+            "attachments":[
+                {
+                    "length":12,
+                    "location":8,
+                    "uploaded_at":0,
+                    "created_at":1461246475,
+                    "salt_hash":"b07a1ae8333671c8d1bd14989e06257a3e6097eebd18bce48306308d67d9057c",
+                    "title":"",
+                    "type":0,
+                    "card_token":"010CF033-CBD4-48CD-844F-26F8ADB698ED"
+                }
+            ],
+            "attachments_hashes":[
+                "b07a1ae8333671c8d1bd14989e06257a3e6097eebd18bce48306308d67d9057c"
+            ]
+        },
+        "token":"010CF033-CBD4-48CD-844F-26F8ADB698ED",
+        "stars":0,
+        "edited_count":0,
+        "modified_at":1461246479,
+        "first_read_at":null
+    }
 }
 ```
 
@@ -470,6 +472,7 @@ POST /upload/card_res (Field: res)
     "error": 0
 }
 ```
+
 ### 索取新闻 News Query
 
 ``` json
@@ -478,6 +481,8 @@ POST /upload/card_res (Field: res)
     "s_date": "2016-03-28"
 }
 ```
+
+- 成功 Succeed
 ``` json
 {
     "news": [
@@ -520,5 +525,40 @@ POST /upload/card_res (Field: res)
     "time": 1459172482,
     "error": 0
 }
+```
 
+### 删除卡片 (实际上是封禁) Delete Card
+
+``` json
+{
+    "action": "card_delete",
+    "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3"
+}
+```
+
+- 成功 Succeed
+```json
+{
+    "time": 1456622272,
+    "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3",
+    "error": 0
+}
+```
+
+### 恢复卡片 Restore Card
+
+``` json
+{
+    "action": "card_restore",
+    "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3"
+}
+```
+
+- 成功 Succeed
+```json
+{
+    "time": 1456622272,
+    "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3",
+    "error": 0
+}
 ```
