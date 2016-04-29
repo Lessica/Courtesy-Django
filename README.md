@@ -143,7 +143,8 @@ POST /api/courtesy
         "has_profile": true,
         "profile": {
             "nick": "\u6211\u53eb i_82",
-            "avatar": "\\static\\avatar\\aaca0f5eb4d2d98a6ce6dffa99f8254b_300.png",
+            "avatar": "aaca0f5eb4d2d98a6ce6dffa99f8254b",
+            "background": "f7ba6151aadf2379394678ac754c9b28",
             "mobile": "13800138000",
             "birthday": "1972-03-21",
             "gender": 1,
@@ -164,7 +165,8 @@ POST /api/courtesy
     "version": 2,
     "profile": {
         "nick": "\u6211\u53eb i_82",
-        "avatar": "\\static\\avatar\\aaca0f5eb4d2d98a6ce6dffa99f8254b_300.png",
+        "avatar": "aaca0f5eb4d2d98a6ce6dffa99f8254b",
+        "background": "f7ba6151aadf2379394678ac754c9b28",
         "mobile": "13800138000",
         "birthday": "1972-03-21",
         "gender": 1,
@@ -176,8 +178,9 @@ POST /api/courtesy
 }
 ```
 
-### 上传用户头像 Upload Avatar
+### 上传用户头像、资料大图 Upload Avatar & Background
 POST /upload/avatar (Field: avater)
+POST /upload/background (Field: background)
 
 - 尺寸不合要求 Size Dismatch
 ```json
@@ -281,7 +284,8 @@ POST /upload/banner (Field: banner)
             "email": "test005@126.com",
             "profile": {
                 "nick": "test005",
-                "avatar": "f7ba6151aadf2379394678ac754c9b28"
+                "avatar": "f7ba6151aadf2379394678ac754c9b28",
+                "background": "f7ba6151aadf2379394678ac754c9b28"
             }
         },
         "is_editable": true,
@@ -293,7 +297,8 @@ POST /upload/banner (Field: banner)
             "email": "test004@126.com",
             "profile": {
                 "nick": "test004",
-                "avatar": "1a86a0de6143dfa55d87a70ab0f302ce"
+                "avatar": "1a86a0de6143dfa55d87a70ab0f302ce",
+                "background": "f7ba6151aadf2379394678ac754c9b28"
             }
         },
         "created_at": 1456547164,
@@ -375,6 +380,7 @@ POST /upload/banner (Field: banner)
             "email":"i.82@qq.com",
             "profile":{
                 "avatar":"b10eec2cdaf08abd437a70dbfe82d221",
+                "background": "f7ba6151aadf2379394678ac754c9b28",
                 "nick":"i_82",
                 "city":"扬州市",
                 "mobile":"13800138000",
@@ -600,7 +606,8 @@ POST /upload/card_res (Field: res)
         "has_profile": true,
         "profile": {
             "nick": "\u6211\u53eb i_82",
-            "avatar": "\\static\\avatar\\aaca0f5eb4d2d98a6ce6dffa99f8254b_300.png",
+            "avatar": "aaca0f5eb4d2d98a6ce6dffa99f8254b",
+            "background": "f7ba6151aadf2379394678ac754c9b28",
             "mobile": "13800138000",
             "birthday": "1972-03-21",
             "gender": 1,
