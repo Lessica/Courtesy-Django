@@ -634,3 +634,26 @@ POST /upload/card_res (Field: res)
     "timestamp": 1456283003
 }
 ```
+
+### 查询他人卡片列表 List All Others' Card
+```json
+{
+    "action": "other_card_list",
+    "user_id": 7,
+    "location": 0,
+    "length": 20
+}
+```
+
+- 成功 Succeed
+```json
+{
+    "error": 0,
+    "user_id": 7,
+    "card_list": [
+        "%card_model_1%",
+        "%card_model_2%"
+    ],
+    "timestamp": 1456283003
+}
+```
