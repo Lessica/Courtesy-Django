@@ -569,7 +569,7 @@ POST /upload/card_res (Field: res)
 }
 ```
 
-### 匿名模式 Incognito Mode (开启匿名模式之后，他人获取到的卡片作者信息为匿名用户)
+### TODO:匿名模式 Incognito Mode (开启匿名模式之后，他人获取到的卡片作者信息为匿名用户)
 ```json
 {
     "action": "incognito_mode",
@@ -624,9 +624,7 @@ POST /upload/card_res (Field: res)
 ### 查询我的卡片列表 List All My Cards
 ```json
 {
-    "action": "my_card_list",
-    "location": 0,
-    "length": 20
+    "action": "my_card_list"
 }
 ```
 
@@ -642,7 +640,7 @@ POST /upload/card_res (Field: res)
 }
 ```
 
-### 查询他人卡片列表 List All Others' Card
+### TODO:查询他人卡片列表 List All Others' Card
 ```json
 {
     "action": "other_card_list",
