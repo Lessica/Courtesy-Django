@@ -143,7 +143,8 @@ POST /api/courtesy
         "has_profile": true,
         "profile": {
             "nick": "\u6211\u53eb i_82",
-            "avatar": "\\static\\avatar\\aaca0f5eb4d2d98a6ce6dffa99f8254b_300.png",
+            "avatar": "aaca0f5eb4d2d98a6ce6dffa99f8254b",
+            "background": "f7ba6151aadf2379394678ac754c9b28",
             "mobile": "13800138000",
             "birthday": "1972-03-21",
             "gender": 1,
@@ -164,7 +165,8 @@ POST /api/courtesy
     "version": 2,
     "profile": {
         "nick": "\u6211\u53eb i_82",
-        "avatar": "\\static\\avatar\\aaca0f5eb4d2d98a6ce6dffa99f8254b_300.png",
+        "avatar": "aaca0f5eb4d2d98a6ce6dffa99f8254b",
+        "background": "f7ba6151aadf2379394678ac754c9b28",
         "mobile": "13800138000",
         "birthday": "1972-03-21",
         "gender": 1,
@@ -176,8 +178,9 @@ POST /api/courtesy
 }
 ```
 
-### 上传用户头像 Upload Avatar
+### 上传用户头像、资料大图 Upload Avatar & Background
 POST /upload/avatar (Field: avater)
+POST /upload/background (Field: background)
 
 - 尺寸不合要求 Size Dismatch
 ```json
@@ -281,11 +284,12 @@ POST /upload/banner (Field: banner)
             "email": "test005@126.com",
             "profile": {
                 "nick": "test005",
-                "avatar": "f7ba6151aadf2379394678ac754c9b28"
+                "avatar": "f7ba6151aadf2379394678ac754c9b28",
+                "background": "f7ba6151aadf2379394678ac754c9b28"
             }
         },
         "is_editable": true,
-        "is_public": true,
+        "is_banned": false,
         "local_template": "%xml_data%",
         "view_count": 1,
         "author": {
@@ -293,7 +297,8 @@ POST /upload/banner (Field: banner)
             "email": "test004@126.com",
             "profile": {
                 "nick": "test004",
-                "avatar": "1a86a0de6143dfa55d87a70ab0f302ce"
+                "avatar": "1a86a0de6143dfa55d87a70ab0f302ce",
+                "background": "f7ba6151aadf2379394678ac754c9b28"
             }
         },
         "created_at": 1456547164,
@@ -328,7 +333,7 @@ POST /upload/banner (Field: banner)
         "qr_id": "3a0137fbecf5a7bfbc25af10c27c54b4",
         "local_template": "%xml_data%",
         "is_editable": true,
-        "is_public": true,
+        "is_banned": false,
         "visible_at": "1999-02-02 00:00:00"
     }
 }
@@ -353,7 +358,7 @@ POST /upload/banner (Field: banner)
         "qr_id": "3a0137fbecf5a7bfbc25af10c27c54b4",
         "local_template": "%xml_data%",
         "is_editable": true,
-        "is_public": true,
+        "is_banned": false,
         "visible_at": "1999-02-02 00:00:00"
     }
 }
@@ -366,7 +371,7 @@ POST /upload/banner (Field: banner)
     "error":0,
     "time":1461246479,
     "card_info":{
-        "is_public":true,
+        "is_banned": false,
         "author":{
             "registered_at":1459181174,
             "last_login_at":1461243724,
@@ -375,6 +380,7 @@ POST /upload/banner (Field: banner)
             "email":"i.82@qq.com",
             "profile":{
                 "avatar":"b10eec2cdaf08abd437a70dbfe82d221",
+                "background": "f7ba6151aadf2379394678ac754c9b28",
                 "nick":"i_82",
                 "city":"扬州市",
                 "mobile":"13800138000",
@@ -560,5 +566,101 @@ POST /upload/card_res (Field: res)
     "time": 1456622272,
     "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3",
     "error": 0
+}
+```
+
+### 匿名模式 Incognito Mode (开启匿名模式之后，他人获取到的卡片作者信息为匿名用户)
+```json
+{
+    "action": "incognito_mode",
+    "enabled": true
+}
+```
+
+- 成功 Succeed
+```json
+{
+    "time": 1456622272,
+    "error": 0
+}
+```
+
+### 查询他人账户信息 Query Others' User Info
+```json
+{
+    "action": "other_user_info",
+    "email": "i.82@me.com"
+}
+```
+
+- 成功 Succeed
+```json
+{
+    "error": 0,
+    "account_info": {
+        "user_id": 1,
+        "email": "i.82@me.com",
+        "registered_at": 1456283003,
+        "last_login_at": 1456283003,
+        "card_count": 2,
+        "has_profile": true,
+        "profile": {
+            "nick": "\u6211\u53eb i_82",
+            "avatar": "aaca0f5eb4d2d98a6ce6dffa99f8254b",
+            "background": "f7ba6151aadf2379394678ac754c9b28",
+            "mobile": "13800138000",
+            "birthday": "1972-03-21",
+            "gender": 1,
+            "province": "\u6c5f\u82cf",
+            "city": "\u5357\u4eac",
+            "area": "\u9097\u6c5f\u533a",
+            "introduction": ""
+        }
+    },
+    "timestamp": 1456283003
+}
+```
+
+### 查询我的卡片列表 List All My Cards
+```json
+{
+    "action": "my_card_list",
+    "location": 0,
+    "length": 20
+}
+```
+
+- 成功 Succeed
+```json
+{
+    "error": 0,
+    "card_list": [
+        "%card_model_1%",
+        "%card_model_2%"
+    ],
+    "timestamp": 1456283003
+}
+```
+
+### 查询他人卡片列表 List All Others' Card
+```json
+{
+    "action": "other_card_list",
+    "user_id": 7,
+    "location": 0,
+    "length": 20
+}
+```
+
+- 成功 Succeed
+```json
+{
+    "error": 0,
+    "user_id": 7,
+    "card_list": [
+        "%card_model_1%",
+        "%card_model_2%"
+    ],
+    "timestamp": 1456283003
 }
 ```
