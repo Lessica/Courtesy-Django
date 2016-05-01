@@ -108,7 +108,11 @@ def api(request):
         "user_logout":user.logout,
         "user_info":user.info,
         "user_edit_profile":user.edit_profile,
+        "other_user_info":user.other_user_info,
+        "my_card_list":user.my_card_list,
+
         "qr_query":qrcode.qr_query,
+
         "card_edit_query":card.card_edit_query,
         "card_edit":card.card_edit,
         "card_delete":card.card_ban,

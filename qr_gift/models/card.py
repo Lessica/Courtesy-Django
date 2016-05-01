@@ -57,7 +57,7 @@ class CardModel(models.Model):
         dic={
             "author":self.author.toDict(),
             "token":self.token,
-            "is_public":self.is_public,
+            "is_banned":self.is_banned,
             "view_count":self.view_count,
             "is_editable":self.is_editable,
             "edited_count":self.edited_count,

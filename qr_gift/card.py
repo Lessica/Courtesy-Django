@@ -15,6 +15,7 @@ from commonupload import *
 import datetime
 import shutil
 import json
+import traceback
 
 ORI_PATH="/home/ursync"
 
@@ -81,6 +82,7 @@ def card_edit(request,post_data,ret):
     try:
         shutil.rmtree(join("qr_gift","static","card",card_info["token"]))
         shutil.copytree(join(ORI_PATH,card_info["token"]),join("qr_gift","static","card",card_info["token"]))
+
     except Exception,e:
         ret["error"]=430
         return ret
@@ -94,7 +96,8 @@ def card_edit(request,post_data,ret):
         #  ret["error"]=425
         #  return ret
     card.local_template=json.dumps( card_info["local_template"] )
-    card.is_public=card_info["is_public"]
+    card.is_public=True
+    card.banned=card_info["is_banned"]
     card.is_editable=card_info["is_editable"]
     card.visible_at=datetime.datetime.fromtimestamp(card_info["visible_at"])
     card.edited_count=card.edited_count+1
@@ -115,8 +118,13 @@ def card_create(request,post_data,ret):
     try:
         shutil.copytree(join(ORI_PATH,card_info["token"]),join("qr_gift","static","card",card_info["token"]))
     except Exception,e:
-        ret["error"]=430
-        return ret
+        if "File exists" in e:
+            shutil.rmtree(join("qr_gift","static","card",card_info["token"]))
+            shutil.copytree(join(ORI_PATH,card_info["token"]),join("qr_gift","static","card",card_info["token"]))
+        else:
+            traceback.print_exc()
+            ret["error"]=430
+            return ret
 
     if "qr_id" in card_info.keys():
         flag=1
@@ -128,7 +136,8 @@ def card_create(request,post_data,ret):
     new_card=CardModel()
     new_card.author=UserModel.objects.get(user_ptr_id=request.user.id)
     new_card.local_template=json.dumps( card_info["local_template"] )
-    new_card.is_public=card_info["is_public"]
+    new_card.is_public=True
+    new_card.banned=card_info["is_banned"]
     new_card.is_editable=card_info["is_editable"]
     #  new_card.token=hashlib.md5(post_data["qr_id"]).hexdigest()
     new_card.token=card_info["token"]

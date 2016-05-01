@@ -117,6 +117,33 @@ def edit_profile(request,post_data,ret):
 
     return ret
 
+def other_user_info(request,post_data,ret):
+    try:
+        user=UserModel.objects.get(email=post_data["email"])
+    except AttributeError as e:
+        ret["error"]=406
+        return ret
+    ret['account_info']=user.toDict()
+    return ret
+
+def my_card_list(request,post_data,ret):
+    try:
+        if not request.user.is_authenticated():
+            ret["error"]=403
+        else:
+            user_model=UserModel.objects.get(user_ptr_id=request.user.id)
+            card_list=CardModel.objects.fliter(author==user_model)
+            ret["card_list"]=list()
+            for each_card in card_list:
+                ret["card_list"].append(each_card.toDict())
+            return ret
+    except AttributeError as e:
+        ret["error"]=406
+        return ret
+#TODO
+def other_card_list(request,post_data,ret):
+    pass
+
 # TODO:
 def password_change():
     res={'error':-1}
@@ -128,6 +155,8 @@ def password_change():
             request.user.set_password()
 
     return HttpResponse(json.dumps(res), content_type="application/json")
+
+
 
 class UserAvatarUpload(CommonUpload):
 
