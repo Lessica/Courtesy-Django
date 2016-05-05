@@ -533,7 +533,7 @@ POST /upload/card_res (Field: res)
 }
 ```
 
-### 删除卡片 (实际上是封禁) Delete Card
+### 禁用卡片 Ban Card
 
 ``` json
 {
@@ -642,6 +642,14 @@ POST /upload/card_res (Field: res)
 }
 ```
 
+### 删除卡片 Delete My Card
+```json
+{
+    "action": "card_real_delete",
+    "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3"
+}
+```
+
 ### TODO: 查询他人卡片列表 List All Others' Card
 ```json
 {
@@ -684,5 +692,13 @@ POST /upload/card_res (Field: res)
         "%card_model_2%"
     ],
     "timestamp": 1456283003
+}
+```
+
+### 删除我的阅读记录 Delete My Read History
+```json
+{
+    "action": "history_delete",
+    "token": "8FF5D3B4-FDC4-4326-9D75-CEACFD700EA3"
 }
 ```
